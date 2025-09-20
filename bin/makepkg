@@ -3,8 +3,8 @@
 BPROG=$0
 
 ABI="32"
-CFLAGS="-I/usr/local/include"
-CXXFLAGS="-I/usr/local/include"
+#CFLAGS="-I/usr/local/include"
+#CXXFLAGS="-I/usr/local/include"
 
 SITE_GNU=ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu
 
@@ -151,6 +151,16 @@ checkdepend() {
 		fi
 	fi
 }
+
+patchsrc() {
+	if [ -d "${HERE}/patches" ]; then
+		cd "${SRCDIR}"
+		for P in ${HERE}/patches/*.patch; do
+			patch -p1 < "$P"
+		done
+		cd "${HERE}"
+	fi
+}
 	
 
 checkdepend
@@ -158,6 +168,7 @@ checkdepend
 
 runonce download
 runonce extract
+runonce patchsrc
 runonce configure
 runonce build
 runonce install 
