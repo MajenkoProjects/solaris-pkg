@@ -54,17 +54,38 @@ mkdir -p "${SRCDIR}"
 mkdir -p "${DESTDIR}"
 mkdir -p "${PKGDIR}"
 
+
+URL_PROTO=`echo "$URL" | cut -f1 -d':'`
+
 download() {
-	( cd "${SRCDIR}" && /usr/sfw/bin/wget -c "${URL}" )
+	cd "${SRCDIR}"
+
+	case $URL_PROTO in
+		http|https|ftp)
+			/usr/sfw/bin/wget -c "${URL}"
+			;;
+		git)
+			P=`echo "${URL}" | cut -f2 -d':'`
+			H=`echo "$P" | cut -f1 -d'@'`
+			T=`echo "$P" | cut -f2 -d'@'`
+			git clone --depth 1 --branch "$T" https:$H "${PACKAGE}-${VERSION}"
+			cd "${PACKAGE}-${VERSION}"
+			git submodule init && git submodule update
+			;;
+	esac
+
+	cd "${HERE}"
 }
 
 extract() {
-	printf "Extracting ${SRC} ... "
-	( 
-		cd "${SRCDIR}"
-		gzip -d < "${SRC}" | tar xf -
-	)
-	echo "done"
+	if [ "$URL_PROTO" != "git" ]; then
+		printf "Extracting ${SRC} ... "
+		( 
+			cd "${SRCDIR}"
+			gzip -d < "${SRC}" | tar xf -
+		)
+		echo "done"
+	fi
 }
 
 package() {
