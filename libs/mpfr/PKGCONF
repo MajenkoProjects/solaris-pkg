@@ -1,0 +1,24 @@
+PACKAGE=mpfr
+VERSION=4.2.2
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=${SITE_GNU}/${PACKAGE}/${SRC}
+CATEGORY=libs
+DEPENDS="libs/gmp"
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
