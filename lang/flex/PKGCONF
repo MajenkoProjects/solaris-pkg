@@ -1,15 +1,14 @@
 VERSION=2.6.4
 PACKAGE=flex
 SRC=${PACKAGE}-${VERSION}.tar.gz
-URL=git://github.com/westes/${PACKAGE}@v${VERSION}
-CATEGORY=devel
+URL=ftp://ftp.majenko.co.uk/mirrors/github.com/westes/flex/${SRC}
+CATEGORY=lang
 DEPENDS="devel/automake devel/autoconf devel/libtool libs/gettext"
 
 configure() {
 	echo "Configuring $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	./autogen.sh
-	./configure
+	./configure 
 }
 
 build() {

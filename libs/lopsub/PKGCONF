@@ -12,11 +12,11 @@ configure() {
 build() {
 	echo "Building $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	make -j ${NCPU}
+	make -j ${NCPU} LEX=flex VERSION=${VERSION}
 }
 
 install() {
 	echo "Installing $PACKAGE to ${DESTDIR}"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	make install PREFIX="${DESTDIR}"
+	make install DESTDIR="${DESTDIR}" LEX=flex VERSION=${VERSION}
 }

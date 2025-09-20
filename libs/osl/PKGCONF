@@ -6,6 +6,7 @@ CATEGORY=libs
 DEPENDS="devel/m4 libs/lopsub"
 
 configure() {
+	echo "Nothing to configure"
 }
 
 build() {
@@ -17,5 +18,5 @@ build() {
 install() {
 	echo "Installing $PACKAGE to ${DESTDIR}"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	make install PREFIX="${DESTDIR}"
+	make install PREFIX="${DESTDIR}/usr/local"
 }

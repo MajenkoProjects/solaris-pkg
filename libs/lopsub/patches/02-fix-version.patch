@@ -1,0 +1,26 @@
+--- lopsub-1.0.5-2.orig/version-gen.sh	Sat Sep 20 22:28:49 2025
++++ lopsub-1.0.5-2/version-gen.sh	Sat Sep 20 22:31:41 2025
+@@ -1,22 +1,7 @@
+ #!/bin/sh
+ 
+ version_file='version.c'
+-ver='unnamed_version'
+-# First try git, then gitweb, then default.
+-if [ -e '.git' -o -e '../.git' ]; then
+-	git_ver=$(git describe --abbrev=4 HEAD 2>/dev/null)
+-	[ -z "$git_ver" ] && git_ver="$ver"
+-	# update stat information in index to match working tree
+-	git update-index -q --refresh > /dev/null
+-	# if there are differences (exit code 1), the working tree is dirty
+-	git diff-index --quiet HEAD || git_ver=$git_ver-dirty
+-	ver=$git_ver
+-elif [ -f debian/changelog ]; then
+-	ver="$(sed -ne '1s/.*(\(.*\)-.*/\1/1; tx; d; :x; p' debian/changelog)"
+-elif [ "${PWD%%-*}" = 'lopsub-' ]; then
+-	ver=${PWD##*/lopsub-}
+-fi
+-ver=${ver#v}
++ver=${VERSION}
+ 
+ echo "$ver"
+ 

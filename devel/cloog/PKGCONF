@@ -5,11 +5,19 @@ URL=git://github.com/periscop/cloog@${PACKAGE}-${VERSION}
 CATEGORY=devel
 DEPENDS="devel/autoconf devel/automake libs/isl devel/libtool"
 
+
+hook_git_clone_post() {
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	git rm -rf isl
+	git submodule init
+	git submodule update
+}
+
 configure() {
 	echo "Configuring $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	./autogen.sh
-	./configure --with-isl=system
+	autoreconf -fiv
+	./configure --with-isl=system --with-osl=bundled
 }
 
 build() {

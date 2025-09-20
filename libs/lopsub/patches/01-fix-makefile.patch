@@ -1,0 +1,43 @@
+--- lopsub-1.0.5-2.orig/Makefile	Sat Sep 20 22:44:11 2025
++++ lopsub-1.0.5-2/Makefile	Sat Sep 20 22:42:28 2025
+@@ -1,7 +1,6 @@
+ # Implicit rules are implemented in make as suffix rules. The following rule
+ # empties the suffix list to disable the predefined implicit rules. This
+ # increases performance and avoids hard-to-debug behaviour.
+-.SUFFIXES:
+ MAKEFLAGS += -Rr
+ ifeq ("$(origin CC)", "default")
+         CC := cc
+@@ -28,7 +27,6 @@
+ GZIP := gzip -fn9
+ ZCAT := zcat
+ 
+-CC += -ffile-prefix-map=$(CURDIR)=.
+ 
+ dummy != $(M4) /dev/null || printf 'failed'
+ ifeq ($(dummy), failed)
+@@ -88,7 +86,7 @@
+ %.lsg.h: %.suite lopsubgen
+ 	./lopsubgen --gen-header < $<
+ %.1.gz: %.suite lopsubgen
+-	./lopsubgen --gen-man=${@:.gz=} --version-string $(GIT_VERSION) < $<
++	./lopsubgen --gen-man=${@:.gz=} --version-string $(VERSION) < $<
+ 	$(GZIP) ${@:.gz=}
+ 
+ # compiling
+@@ -137,9 +135,12 @@
+ 	$(ZCAT) $< | $(GROFF) -m man -Thtml | sed -e '1,/^<body>/d' >> $@
+ 
+ install: $(all)
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib $(DESTDIR)$(PREFIX)/include \
+-		$(DESTDIR)$(PREFIX)/share/man/man1 $(DESTDIR)$(PREFIX)/share/man/man5 \
+-		$(DESTDIR)$(PREFIX)/share/man/man7 $(DESTDIR)$(PREFIX)/bin
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/include 
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/share/man/man1
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/share/man/man5 
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/share/man/man7
++	$(INSTALL) -d $(DESTDIR)$(PREFIX)/bin
+ 	$(INSTALL) -m 644 $(REALNAME) $(DESTDIR)$(PREFIX)/lib
+ 	$(LN) -s $(REALNAME) $(DESTDIR)$(PREFIX)/lib/$(SONAME)
+ 	$(LN) -s $(SONAME) $(DESTDIR)$(PREFIX)/lib/$(LINKERNAME)
