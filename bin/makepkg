@@ -18,13 +18,28 @@ OS="${OSNAME}-${OSVER}"
 
 OPT_INSTALL=0
 OPT_RECURSE=0
+OPT_FORCE=0
 
 
 
-set -- `getopt is $*`
+#hook_git_clone_pre() { 
+#}
+#hook_git_clone_post() { 
+#}
+
+hook() {
+	FN="hook_$1"
+	type $FN 2>/dev/null | grep function > /dev/null && $FN
+}
+
+
+
+
+set -- `getopt ifs $*`
 for i in $*
 do
 	case $i in
+	-f) OPT_FORCE=1; shift;;
 	-i) OPT_INSTALL=1; shift;;
 	-s) OPT_RECURSE=1; shift;;
 	--) shift; break;;
@@ -50,31 +65,35 @@ DESTDIR="${HERE}/staging"
 PKGDIR="${HERE}/pkg"
 export DESTDIR
 
-mkdir -p "${SRCDIR}"
-mkdir -p "${DESTDIR}"
-mkdir -p "${PKGDIR}"
 
 
 URL_PROTO=`echo "$URL" | cut -f1 -d':'`
 
+cleanup() {
+	rm -rf src pkg staging
+	rm -f .download .extract .patchsrc .configure .build .install .package .installpkg
+}
+
 download() {
-	cd "${SRCDIR}"
 
 	case $URL_PROTO in
 		http|https|ftp)
+			cd "${SRCDIR}"
 			/usr/sfw/bin/wget -c "${URL}"
+			cd "${HERE}"
 			;;
 		git)
 			P=`echo "${URL}" | cut -f2 -d':'`
 			H=`echo "$P" | cut -f1 -d'@'`
 			T=`echo "$P" | cut -f2 -d'@'`
+			hook git_clone_pre
+			cd "${SRCDIR}"
 			git clone --depth 1 --branch "$T" https:$H "${PACKAGE}-${VERSION}"
-			cd "${PACKAGE}-${VERSION}"
-			git submodule init && git submodule update
+			hook git_clone_post
+			cd "${HERE}"
 			;;
 	esac
 
-	cd "${HERE}"
 }
 
 extract() {
@@ -111,6 +130,9 @@ package() {
 #	tar -cf "${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar" *
 #	cd "${HERE}"
 #	compress -f ${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar
+
+	rm "${HERE}/Prototype"
+	rm "${HERE}/pkginfo"
 }
 
 runonce() {
@@ -132,7 +154,7 @@ checkdepend() {
 			CATNAME=`echo $DEP | cut -f1 -d'/'`
 			PKGNAME=`echo $DEP | cut -f2 -d'/'`
 			if pkginfo -q -c $CATNAME $PKGNAME; then
-				echo "$PKGNAME found"
+				printf ""
 			else
 				echo "Missing requirement: $DEP"
 				if [ "${OPT_RECURSE}" = "1" ]; then
@@ -165,13 +187,23 @@ patchsrc() {
 
 checkdepend
 
+if [ "${OPT_FORCE}" = "1" ]; then
+	cleanup
+fi
+
+
+mkdir -p "${SRCDIR}"
 
 runonce download
 runonce extract
 runonce patchsrc
 runonce configure
 runonce build
+
+mkdir -p "${DESTDIR}"
 runonce install 
+
+mkdir -p "${PKGDIR}"
 runonce package
 
 if [ "${OPT_INSTALL}" = "1" ]; then
