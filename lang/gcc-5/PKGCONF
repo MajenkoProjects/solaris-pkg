@@ -3,7 +3,7 @@ PACKAGE=gcc-5
 SRC=gcc-${VERSION}.tar.gz
 URL=${SITE_GNU}/gcc/gcc-${VERSION}/${SRC}
 CATEGORY=lang
-DEPENDS="devel/binutils libs/gmp libs/mpc libs/mpfr devel/cloog"
+DEPENDS="arch/tar devel/binutils libs/gmp libs/mpc libs/mpfr devel/cloog"
 
 configure() {
 	echo "Configuring $PACKAGE"
