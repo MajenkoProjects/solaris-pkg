@@ -1,0 +1,147 @@
+#!/bin/sh 
+
+BPROG=$0
+
+ABI="32"
+CFLAGS="-I/usr/local/include"
+CXXFLAGS="-I/usr/local/include"
+
+SITE_GNU=ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu
+
+NCPU=`/usr/sbin/psrinfo -p`
+ARCH=`uname -m`
+OSVER=`uname -r`
+OSNAME=`uname -s`
+OS="${OSNAME}-${OSVER}"
+
+
+
+OPT_INSTALL=0
+OPT_RECURSE=0
+
+
+
+set -- `getopt is $*`
+for i in $*
+do
+	case $i in
+	-i) OPT_INSTALL=1; shift;;
+	-s) OPT_RECURSE=1; shift;;
+	--) shift; break;;
+	esac
+done
+
+
+if [ ! -f "PKGCONF" ]; then
+	echo "Missing PKGCONF file."
+	exit 10
+fi
+
+. PKGCONF
+
+if [ -z "$URL" ]; then
+	echo "URL missing from PKGCONF."
+	exit 10
+fi
+
+HERE=`pwd`
+SRCDIR="${HERE}/src"
+DESTDIR="${HERE}/staging"
+PKGDIR="${HERE}/pkg"
+export DESTDIR
+
+mkdir -p "${SRCDIR}"
+mkdir -p "${DESTDIR}"
+mkdir -p "${PKGDIR}"
+
+download() {
+	( cd "${SRCDIR}" && /usr/sfw/bin/wget -c "${URL}" )
+}
+
+extract() {
+	printf "Extracting ${SRC} ... "
+	( 
+		cd "${SRCDIR}"
+		gzip -d < "${SRC}" | tar xf -
+	)
+	echo "done"
+}
+
+package() {
+	echo "PKG=\"${PACKAGE}\"" > "${HERE}/pkginfo"
+	echo "NAME=\"${PACKAGE} ${VERSION}\"" >> "${HERE}/pkginfo"
+	echo "VERSION=\"${VERSION}\"" >> "${HERE}/pkginfo"
+	echo "ARCH=\"${ARCH}\"" >> "${HERE}/pkginfo"
+	echo "CLASSES=\"none\"" >> "${HERE}/pkginfo" 
+	echo "CATEGORY=\"${CATEGORY}\"" >> "${HERE}/pkginfo" 
+	echo "VENDOR=\"Local\"" >> "${HERE}/pkginfo" 
+	echo "BASEDIR=\"/\"" >> "${HERE}/pkginfo" 
+
+	cd "${DESTDIR}"
+	echo "i pkginfo" > "${HERE}/Prototype"
+	find . | pkgproto | awk '{print $1 " " $2 " /" $3 " " $4 " root root"}' >> "${HERE}/Prototype"
+	cd "${HERE}"
+
+	pkgmk -o -r "${DESTDIR}" -d "${PKGDIR}"  -f Prototype
+
+	pkgtrans "${PKGDIR}" "${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg" ${PACKAGE}
+
+#	cd "${DESTDIR}"
+#	tar -cf "${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar" *
+#	cd "${HERE}"
+#	compress -f ${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar
+}
+
+runonce() {
+	FUNC=$1
+	if [ ! -f "${HERE}/.${FUNC}" ]; then
+		$1 "$2" "$3" "$4" "$5" "$6" || exit 10
+	fi
+	touch "${HERE}/.${FUNC}"
+}
+
+installpkg() {
+	su root -c "/usr/sbin/pkgadd -d \"${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg\""
+}
+
+checkdepend() {
+	if [ ! -z "${DEPENDS}" ]; then
+		FAIL=0
+		for DEP in ${DEPENDS}; do
+			CATNAME=`echo $DEP | cut -f1 -d'/'`
+			PKGNAME=`echo $DEP | cut -f2 -d'/'`
+			if pkginfo -q -c $CATNAME $PKGNAME; then
+				echo "$PKGNAME found"
+			else
+				echo "Missing requirement: $DEP"
+				if [ "${OPT_RECURSE}" = "1" ]; then
+					(
+						cd "${HERE}/../../$CATNAME/$PKGNAME"
+						$BPROG -s -i
+						cd "${HERE}"
+					)
+				else
+					FAIL=1
+				fi
+			fi
+		done
+		if [ "$FAIL" = "1" ]; then
+			exit 10
+		fi
+	fi
+}
+	
+
+checkdepend
+
+
+runonce download
+runonce extract
+runonce configure
+runonce build
+runonce install 
+runonce package
+
+if [ "${OPT_INSTALL}" = "1" ]; then
+	runonce installpkg
+fi

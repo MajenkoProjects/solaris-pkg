@@ -1,0 +1,24 @@
+VERSION=2.72
+PACKAGE=autoconf
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=${SITE_GNU}/${PACKAGE}/${SRC}
+DEPENDS=m4
+CATEGORY=devel
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}

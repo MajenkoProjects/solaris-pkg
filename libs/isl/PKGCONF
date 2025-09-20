@@ -1,0 +1,24 @@
+PACKAGE=isl
+VERSION=0.27
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=ftp://ftp.majenko.co.uk/mirrors/libisl.sourceforge.io/${SRC}
+CATEGORY=libs
+DEPENDS=libs/gmp
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
