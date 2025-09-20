@@ -1,14 +1,11 @@
-VERSION=2.45
-PACKAGE=binutils
+PACKAGE=osl
+VERSION=0.2.0
 SRC=${PACKAGE}-${VERSION}.tar.gz
-URL=${SITE_GNU}/${PACKAGE}/${SRC}
-CATEGORY=devel
-DEPENDS=libs/isl
+URL=git://git.tuebingen.mpg.de/osl.git@v${VERSION}
+CATEGORY=libs
+DEPENDS="devel/m4 libs/lopsub"
 
 configure() {
-	echo "Configuring $PACKAGE"
-	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	./configure
 }
 
 build() {
@@ -20,5 +17,5 @@ build() {
 install() {
 	echo "Installing $PACKAGE to ${DESTDIR}"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	make install DESTDIR="${DESTDIR}"
+	make install PREFIX="${DESTDIR}"
 }

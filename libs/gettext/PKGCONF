@@ -1,9 +1,9 @@
-VERSION=2.45
-PACKAGE=binutils
+PACKAGE=gettext
+VERSION=0.26
 SRC=${PACKAGE}-${VERSION}.tar.gz
 URL=${SITE_GNU}/${PACKAGE}/${SRC}
-CATEGORY=devel
-DEPENDS=libs/isl
+CATEGORY=libs
+DEPENDS="libs/libiconv"
 
 configure() {
 	echo "Configuring $PACKAGE"

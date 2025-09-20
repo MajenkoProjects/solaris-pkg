@@ -1,9 +1,8 @@
-VERSION=2.45
-PACKAGE=binutils
+VERSION=2.5.4
+PACKAGE=libtool
 SRC=${PACKAGE}-${VERSION}.tar.gz
 URL=${SITE_GNU}/${PACKAGE}/${SRC}
 CATEGORY=devel
-DEPENDS=libs/isl
 
 configure() {
 	echo "Configuring $PACKAGE"

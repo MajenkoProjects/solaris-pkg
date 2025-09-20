@@ -1,14 +1,15 @@
-VERSION=2.45
-PACKAGE=binutils
+VERSION=0.21.1
+PACKAGE=cloog
 SRC=${PACKAGE}-${VERSION}.tar.gz
-URL=${SITE_GNU}/${PACKAGE}/${SRC}
+URL=git://github.com/periscop/cloog@${PACKAGE}-${VERSION}
 CATEGORY=devel
-DEPENDS=libs/isl
+DEPENDS="devel/autoconf devel/automake libs/isl devel/libtool"
 
 configure() {
 	echo "Configuring $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
-	./configure
+	./autogen.sh
+	./configure --with-isl=system
 }
 
 build() {

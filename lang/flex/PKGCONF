@@ -1,13 +1,14 @@
-VERSION=2.45
-PACKAGE=binutils
+VERSION=2.6.4
+PACKAGE=flex
 SRC=${PACKAGE}-${VERSION}.tar.gz
-URL=${SITE_GNU}/${PACKAGE}/${SRC}
+URL=git://github.com/westes/${PACKAGE}@v${VERSION}
 CATEGORY=devel
-DEPENDS=libs/isl
+DEPENDS="devel/automake devel/autoconf devel/libtool libs/gettext"
 
 configure() {
 	echo "Configuring $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./autogen.sh
 	./configure
 }
 
