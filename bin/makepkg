@@ -16,6 +16,7 @@ OS="${OSNAME}-${OSVER}"
 
 
 
+
 OPT_INSTALL=0
 OPT_RECURSE=0
 OPT_FORCE=0
@@ -63,34 +64,39 @@ HERE=`pwd`
 SRCDIR="${HERE}/src"
 DESTDIR="${HERE}/staging"
 PKGDIR="${HERE}/pkg"
+DISTFILES="${HERE}/../../distfiles"
+
 export DESTDIR
+export DISTFILES
 
 
 
 URL_PROTO=`echo "$URL" | cut -f1 -d':'`
 
 cleanup() {
-	rm -rf src pkg staging
+	printf "Cleaning up ... src "
+	rm -rf src
+	printf "pkg "
+	rm -rf pkg
+	printf "staging "
+	rm -rf staging
 	rm -f .download .extract .patchsrc .configure .build .install .package .installpkg
+	echo "... done"
 }
 
 download() {
 
 	case $URL_PROTO in
 		http|https|ftp)
-			cd "${SRCDIR}"
-			/usr/sfw/bin/wget -c "${URL}"
-			cd "${HERE}"
+			/usr/sfw/bin/wget -c -O "${DISTFILES}/${SRC}" "${URL}"
 			;;
 		git)
 			P=`echo "${URL}" | cut -f2 -d':'`
 			H=`echo "$P" | cut -f1 -d'@'`
 			T=`echo "$P" | cut -f2 -d'@'`
 			hook git_clone_pre
-			cd "${SRCDIR}"
-			git clone --depth 1 --branch "$T" https:$H "${PACKAGE}-${VERSION}"
+			git clone --depth 1 --branch "$T" https:$H "${SRCDIR}/${PACKAGE}-${VERSION}"
 			hook git_clone_post
-			cd "${HERE}"
 			;;
 	esac
 
@@ -101,7 +107,7 @@ extract() {
 		printf "Extracting ${SRC} ... "
 		( 
 			cd "${SRCDIR}"
-			gzip -d < "${SRC}" | tar xf -
+			gzip -d < "${DISTFILES}/${SRC}" | tar xf -
 		)
 		echo "done"
 	fi
@@ -119,6 +125,24 @@ package() {
 
 	cd "${DESTDIR}"
 	echo "i pkginfo" > "${HERE}/Prototype"
+
+	if [ ! -z "${PREINSTALL}" ]; then
+		cp "${PREINSTALL}" preinstall
+		echo "i preinstall" >> "${HERE}/Prototype"
+	]
+
+	if [ ! -z "${POSTINSTALL}" ]; then
+		cp "${POSTINSTALL}" postinstall
+		echo "i postinstall" >> "${HERE}/Prototype"
+	]
+
+	if [ ! -z "${CHECKINSTALL}" ]; then
+		cp "${CHECKINSTALL}" checkinstall
+		echo "i checkinstall" >> "${HERE}/Prototype"
+	]
+
+
+
 	find . | pkgproto | awk '{print $1 " " $2 " /" $3 " " $4 " root root"}' >> "${HERE}/Prototype"
 	cd "${HERE}"
 
@@ -131,8 +155,11 @@ package() {
 #	cd "${HERE}"
 #	compress -f ${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar
 
-	rm "${HERE}/Prototype"
-	rm "${HERE}/pkginfo"
+	rm -f "${HERE}/Prototype"
+	rm -f "${HERE}/pkginfo"
+	rm -f "${HERE}/preinstall"
+	rm -f "${HERE}/postinstall"
+	rm -f "${HERE}/checkinstall"
 }
 
 runonce() {
@@ -192,11 +219,14 @@ if [ "${OPT_FORCE}" = "1" ]; then
 fi
 
 
-mkdir -p "${SRCDIR}"
 
+mkdir -p "${DISTFILES}"
 runonce download
+
+mkdir -p "${SRCDIR}"
 runonce extract
 runonce patchsrc
+
 runonce configure
 runonce build
 

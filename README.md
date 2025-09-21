@@ -52,7 +52,7 @@ within the package, and should be named with a `.patch` extension. They
 should be "unified" patch files (created with `diff -u`), and will be
 applied to the source code after extraction and before configuration.
 
-||* Script files - (not implemented yet). These should be placed in the
+* Script files - (not implemented yet). These should be placed in the
 `scripts` directory, and referenced in the `PKGCONF` file using the
 variables:
 
@@ -61,7 +61,7 @@ variables:
   * `CHECKINSTALL=...`
 
 They will be included in the final package as the relevant script file
-entries.||
+entries.
 
 
 Compiling a Package
