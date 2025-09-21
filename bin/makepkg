@@ -8,7 +8,7 @@ ABI="32"
 
 SITE_GNU=ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu
 
-NCPU=`/usr/sbin/psrinfo -p`
+NCPU=${NCPU:-`/usr/sbin/psrinfo -p`}
 ARCH=`uname -m`
 OSVER=`uname -r`
 OSNAME=`uname -s`
@@ -176,7 +176,7 @@ runonce() {
 		if $1 "$2" "$3" "$4" "$5" "$6" ; then
 			printf ""
 		else
-			echo "Failed $!"
+			echo "Failed: $?"
 			exit 12
 		fi
 	fi
