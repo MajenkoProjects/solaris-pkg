@@ -129,17 +129,17 @@ package() {
 	if [ ! -z "${PREINSTALL}" ]; then
 		cp "${PREINSTALL}" preinstall
 		echo "i preinstall" >> "${HERE}/Prototype"
-	]
+	fi
 
 	if [ ! -z "${POSTINSTALL}" ]; then
 		cp "${POSTINSTALL}" postinstall
 		echo "i postinstall" >> "${HERE}/Prototype"
-	]
+	fi
 
 	if [ ! -z "${CHECKINSTALL}" ]; then
 		cp "${CHECKINSTALL}" checkinstall
 		echo "i checkinstall" >> "${HERE}/Prototype"
-	]
+	fi
 
 
 
