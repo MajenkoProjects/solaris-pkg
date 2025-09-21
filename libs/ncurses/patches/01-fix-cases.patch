@@ -1,0 +1,4472 @@
+--- ncurses-6.5.orig/configure	Wed Apr 10 09:09:48 2024
++++ ncurses-6.5/configure	Sun Sep 21 23:55:25 2025
+@@ -1325,14 +1325,14 @@
+ echo $ECHO_N "checking for package patch date... $ECHO_C" >&6
+ 	VERSION_PATCH=`echo "$cf_field3" | sed -e 's/^[^-]*-//'`
+ 	case .$VERSION_PATCH in
+-	(.)
++	.)
+ 		{ { echo "$as_me:1329: error: missing patch-date $VERSION_PATCH" >&5
+ echo "$as_me: error: missing patch-date $VERSION_PATCH" >&2;}
+    { (exit 1); exit 1; }; }
+ 		;;
+-	(.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])
++	.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])
+ 		;;
+-	(*)
++	*)
+ 		{ { echo "$as_me:1336: error: illegal patch-date $VERSION_PATCH" >&5
+ echo "$as_me: error: illegal patch-date $VERSION_PATCH" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -1396,9 +1396,9 @@
+ 
+ if test -n "$NCURSES_MAJOR" ; then
+   case `echo "$NCURSES_MAJOR" | sed -e 's/^[0-9]*$/0/g'` in
+-  (0)
++  0)
+  	;;
+-  (*)
++  *)
+ 	{ { echo "$as_me:1402: error: Release major-version is not a number: $NCURSES_MAJOR" >&5
+ echo "$as_me: error: Release major-version is not a number: $NCURSES_MAJOR" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -1412,9 +1412,9 @@
+ 
+ if test -n "$NCURSES_MINOR" ; then
+   case `echo "$NCURSES_MINOR" | sed -e 's/^[0-9]*$/0/g'` in
+-  (0)
++  0)
+  	;;
+-  (*)
++  *)
+ 	{ { echo "$as_me:1418: error: Release minor-version is not a number: $NCURSES_MINOR" >&5
+ echo "$as_me: error: Release minor-version is not a number: $NCURSES_MINOR" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -1437,10 +1437,10 @@
+ 		{ echo "$as_me:1437: WARNING: overriding ABI version $cf_cv_abi_version to $withval" >&5
+ echo "$as_me: WARNING: overriding ABI version $cf_cv_abi_version to $withval" >&2;}
+ 		case "$cf_cv_rel_version" in
+-		(5.*)
++		5.*)
+ 			cf_cv_rel_version=$withval.0
+ 			;;
+-		(6.*)
++		6.*)
+ 			cf_cv_rel_version=$withval.9	# FIXME: should be 10 as of 6.0 release
+ 			;;
+ 		esac
+@@ -1450,9 +1450,9 @@
+ 
+ if test -n "$cf_cv_abi_version" ; then
+   case `echo "$cf_cv_abi_version" | sed -e 's/^[0-9]*$/0/g'` in
+-  (0)
++  0)
+  	;;
+-  (*)
++  *)
+ 	{ { echo "$as_me:1456: error: ABI version is not a number: $cf_cv_abi_version" >&5
+ echo "$as_me: error: ABI version is not a number: $cf_cv_abi_version" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -1469,7 +1469,7 @@
+ if test "x$cf_cv_abi_version" != "x$with_abi_version"
+ then
+ 	case "$cf_cv_rel_version" in
+-	(5.*)
++	5.*)
+ 		cf_cv_rel_version=$with_abi_version.0
+ 		;;
+ 	esac
+@@ -1689,10 +1689,10 @@
+ if test "x$prefix" = "xNONE" ; then
+ 	case "$cf_cv_system_name" in
+ 		# non-vendor systems don't have a conflict
+-	(openbsd*|freebsd*|mirbsd*|linux*|cygwin*|msys*|k*bsd*-gnu|mingw*)
++	openbsd*|freebsd*|mirbsd*|linux*|cygwin*|msys*|k*bsd*-gnu|mingw*)
+ 		prefix=/usr
+ 		;;
+-	(*)	prefix=$ac_default_prefix
++	*)	prefix=$ac_default_prefix
+ 		;;
+ 	esac
+ fi
+@@ -1749,7 +1749,7 @@
+ 
+ # ABI 6 default differences from ABI 5:
+ case x$cf_cv_abi_default in
+-(x[6789])
++x[6789])
+ 	cf_dft_chtype=uint32_t
+ 	cf_dft_ext_colors=yes
+ 	cf_dft_ext_const=yes
+@@ -1768,7 +1768,7 @@
+ 
+ # ABI 7 default differences from ABI 6:
+ case x$cf_cv_abi_default in
+-(x[789])
++x[789])
+ 	cf_dft_ccharw_max=6
+ 	cf_dft_mmask_t=uint64_t
+ 	cf_dft_ordinate_type=int
+@@ -1785,9 +1785,9 @@
+ 
+ if test -n "$withval" ; then
+   case `echo "$withval" | sed -e 's/^[0-9]*$/0/g'` in
+-  (0)
++  0)
+  	;;
+-  (*)
++  *)
+ 	{ { echo "$as_me:1791: error: ABI altered is not a number: $withval" >&5
+ echo "$as_me: error: ABI altered is not a number: $withval" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -2333,7 +2333,7 @@
+ 
+ if test "$GCC" = yes ; then
+ 	case "$host_os" in
+-	(linux*|gnu*)
++	linux*|gnu*)
+ 		echo "$as_me:2337: checking if this is really Intel C compiler" >&5
+ echo $ECHO_N "checking if this is really Intel C compiler... $ECHO_C" >&6
+ 		cf_save_CFLAGS="$CFLAGS"
+@@ -2433,7 +2433,7 @@
+ 
+ if test "x$CLANG_COMPILER" = "xyes" ; then
+ 	case "$CC" in
+-	(c[1-9][0-9]|*/c[1-9][0-9])
++	c[1-9][0-9]|*/c[1-9][0-9])
+ 		{ echo "$as_me:2437: WARNING: replacing broken compiler alias $CC" >&5
+ echo "$as_me: WARNING: replacing broken compiler alias $CC" >&2;}
+ 		CFLAGS="$CFLAGS -std=`echo "$CC" | sed -e 's%.*/%%'`"
+@@ -2601,7 +2601,7 @@
+ echo "$as_me:2601: checking \$CFLAGS variable" >&5
+ echo $ECHO_N "checking \$CFLAGS variable... $ECHO_C" >&6
+ case "x$CFLAGS" in
+-(*-[IUD]*)
++*-[IUD]*)
+ 	echo "$as_me:2605: result: broken" >&5
+ echo "${ECHO_T}broken" >&6
+ 	{ echo "$as_me:2607: WARNING: your environment uses the CFLAGS variable to hold CPPFLAGS options" >&5
+@@ -2619,11 +2619,11 @@
+ for cf_add_cflags in $cf_arg
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -2646,11 +2646,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -2666,7 +2666,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -2674,7 +2674,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -2711,7 +2711,7 @@
+ 
+ 	done
+ 	;;
+-(*)
++*)
+ 	echo "$as_me:2715: result: ok" >&5
+ echo "${ECHO_T}ok" >&6
+ 	;;
+@@ -2720,7 +2720,7 @@
+ echo "$as_me:2720: checking \$CC variable" >&5
+ echo $ECHO_N "checking \$CC variable... $ECHO_C" >&6
+ case "$CC" in
+-(*[\ \	]-*)
++*[\ \	]-*)
+ 	echo "$as_me:2724: result: broken" >&5
+ echo "${ECHO_T}broken" >&6
+ 	{ echo "$as_me:2726: WARNING: your environment uses the CC variable to hold CFLAGS/CPPFLAGS options" >&5
+@@ -2732,7 +2732,7 @@
+ 	for cf_arg in $cf_flags
+ 	do
+ 		case "x$cf_arg" in
+-		(x-[IUDfgOW]*)
++		x-[IUDfgOW]*)
+ 
+ cf_fix_cppflags=no
+ cf_new_cflags=
+@@ -2742,11 +2742,11 @@
+ for cf_add_cflags in $cf_arg
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -2769,11 +2769,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -2789,7 +2789,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -2797,7 +2797,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -2833,7 +2833,7 @@
+ fi
+ 
+ 			;;
+-		(*)
++		*)
+ 			CC="$CC $cf_arg"
+ 			;;
+ 		esac
+@@ -2851,7 +2851,7 @@
+ echo "${as_me:-configure}:2851: testing resulting CPPFLAGS: '$CPPFLAGS' ..." 1>&5
+ 
+ 	;;
+-(*)
++*)
+ 	echo "$as_me:2855: result: ok" >&5
+ echo "${ECHO_T}ok" >&6
+ 	;;
+@@ -3147,10 +3147,10 @@
+ 	LDCONFIG=:
+ else
+ 	case "$cf_cv_system_name" in
+-	(dragonfly*|mirbsd*|freebsd*)
++	dragonfly*|mirbsd*|freebsd*)
+ 		test -z "$LDCONFIG" && LDCONFIG="/sbin/ldconfig -R"
+ 		;;
+-	(*) LDPATH=$PATH:/sbin:/usr/sbin
++	*) LDPATH=$PATH:/sbin:/usr/sbin
+ 		# Extract the first word of "ldconfig", so it can be a program name with args.
+ set dummy ldconfig; ac_word=$2
+ echo "$as_me:3156: checking for $ac_word" >&5
+@@ -3617,7 +3617,7 @@
+ 
+ 	fi
+ 	case "x$CXX" in
+-	(x|xg++)
++	x|xg++)
+ 		{ echo "$as_me:3621: WARNING: You don't have any C++ compiler, too bad" >&5
+ echo "$as_me: WARNING: You don't have any C++ compiler, too bad" >&2;}
+ 		cf_with_cxx=no; CXX=""; GXX="";
+@@ -3640,9 +3640,9 @@
+ fi
+ 
+ case "$GXX_VERSION" in
+-([1-9][0-9].*)
++[1-9][0-9].*)
+ 	;;
+-(1.*|2.[0-6]*)
++1.*|2.[0-6]*)
+ 	{ echo "$as_me:3646: WARNING: templates do not work" >&5
+ echo "$as_me: WARNING: templates do not work" >&2;}
+ 	;;
+@@ -3862,9 +3862,9 @@
+ test -z "$INSTALL_DATA" && INSTALL_DATA='${INSTALL} -m 644'
+ 
+ case $INSTALL in
+-(/*)
++/*)
+ 	;;
+-(*)
++*)
+ 	cf_dir=`echo "$INSTALL" | sed -e 's%/[^/]*$%%'`
+ 	test -z "$cf_dir" && cf_dir=.
+ 	INSTALL="`cd \"$cf_dir\" && pwd`"/"`echo "$INSTALL" | sed -e 's%^.*/%%'`"
+@@ -3909,7 +3909,7 @@
+ done
+ 
+ case "x$LINT" in
+-(xcppcheck|x*/cppcheck)
++xcppcheck|x*/cppcheck)
+ 	test -z "$LINT_OPTS" && LINT_OPTS="--enable=all"
+ 	;;
+ esac
+@@ -3999,11 +3999,11 @@
+ if test "${with_config_suffix+set}" = set; then
+   withval="$with_config_suffix"
+   case "x$withval" in
+-	(xyes|xno)
++	xyes|xno)
+ 		{ echo "$as_me:4003: WARNING: expected a value for config-suffix option" >&5
+ echo "$as_me: WARNING: expected a value for config-suffix option" >&2;}
+ 		;;
+-	(*)	cf_config_suffix="$withval"
++	*)	cf_config_suffix="$withval"
+ 		;;
+ 	esac
+ fi;
+@@ -4024,10 +4024,10 @@
+ echo "${ECHO_T}$cf_pkg_config" >&6
+ 
+ case "$cf_pkg_config" in
+-(no)
++no)
+ 	PKG_CONFIG=none
+ 	;;
+-(yes)
++yes)
+ 
+ if test -n "$ac_tool_prefix"; then
+   # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+@@ -4114,7 +4114,7 @@
+ fi
+ 
+ 	;;
+-(*)
++*)
+ 	PKG_CONFIG=$withval
+ 	;;
+ esac
+@@ -4129,24 +4129,24 @@
+ fi
+ 
+ case ".$PKG_CONFIG" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval PKG_CONFIG="$PKG_CONFIG"
+ 	case ".$PKG_CONFIG" in
+-	(.NONE/*)
++	.NONE/*)
+ 		PKG_CONFIG=`echo "$PKG_CONFIG" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	PKG_CONFIG=`echo "$PKG_CONFIG" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:4150: error: expected a pathname, not \"$PKG_CONFIG\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$PKG_CONFIG\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -4159,11 +4159,11 @@
+ fi
+ 
+ case "$PKG_CONFIG" in
+-(no|none|yes)
++no|none|yes)
+ 	echo "$as_me:4163: checking for pkg-config library directory" >&5
+ echo $ECHO_N "checking for pkg-config library directory... $ECHO_C" >&6
+ 	;;
+-(*)
++*)
+ 	echo "$as_me:4167: checking for $PKG_CONFIG library directory" >&5
+ echo $ECHO_N "checking for $PKG_CONFIG library directory... $ECHO_C" >&6
+ 	;;
+@@ -4189,24 +4189,24 @@
+ fi;
+ 
+ case "x$cf_search_path" in
+-(xlibdir)
++xlibdir)
+ 	PKG_CONFIG_LIBDIR='${libdir}/pkgconfig'
+ 	echo "$as_me:4194: result: $PKG_CONFIG_LIBDIR" >&5
+ echo "${ECHO_T}$PKG_CONFIG_LIBDIR" >&6
+ 	cf_search_path=
+ 	;;
+-(x)
++x)
+ 	;;
+-(x/*\ *)
++x/*\ *)
+ 	PKG_CONFIG_LIBDIR=
+ 	;;
+-(x/*)
++x/*)
+ 	PKG_CONFIG_LIBDIR="$cf_search_path"
+ 	echo "$as_me:4205: result: $PKG_CONFIG_LIBDIR" >&5
+ echo "${ECHO_T}$PKG_CONFIG_LIBDIR" >&6
+ 	cf_search_path=
+ 	;;
+-(xyes|xauto)
++xyes|xauto)
+ 	echo "$as_me:4210: result: auto" >&5
+ echo "${ECHO_T}auto" >&6
+ 	cf_search_path=
+@@ -4241,7 +4241,7 @@
+ 	echo "$as_me:4241: result: $cf_search_path" >&5
+ echo "${ECHO_T}$cf_search_path" >&6
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:4245: error: Unexpected option value: $cf_search_path" >&5
+ echo "$as_me: error: Unexpected option value: $cf_search_path" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -4322,11 +4322,11 @@
+ then
+ 	MAKE_PC_FILES=
+ 	case "x$PKG_CONFIG_LIBDIR" in
+-	(xno|xnone|xyes|x)
++	xno|xnone|xyes|x)
+ 		{ echo "$as_me:4326: WARNING: no PKG_CONFIG_LIBDIR was found" >&5
+ echo "$as_me: WARNING: no PKG_CONFIG_LIBDIR was found" >&2;}
+ 		;;
+-	(*)
++	*)
+ 		cf_pkg_config_libdir="$PKG_CONFIG_LIBDIR"
+ 
+ if test "x$prefix" != xNONE; then
+@@ -4336,24 +4336,24 @@
+ fi
+ 
+ case ".$cf_pkg_config_libdir" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_pkg_config_libdir="$cf_pkg_config_libdir"
+ 	case ".$cf_pkg_config_libdir" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_pkg_config_libdir=`echo "$cf_pkg_config_libdir" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_pkg_config_libdir=`echo "$cf_pkg_config_libdir" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:4357: error: expected a pathname, not \"$cf_pkg_config_libdir\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$cf_pkg_config_libdir\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -4375,10 +4375,10 @@
+ if test "${with_pc_suffix+set}" = set; then
+   withval="$with_pc_suffix"
+   case "x$withval" in
+-	(xyes|xno)
++	xyes|xno)
+ 		PC_MODULE_SUFFIX=
+ 		;;
+-	(*)	PC_MODULE_SUFFIX="$withval"
++	*)	PC_MODULE_SUFFIX="$withval"
+ 		;;
+ 	esac
+ fi;
+@@ -4411,10 +4411,10 @@
+ 
+ if test "$cross_compiling" = yes ; then
+ 	case "$target_alias" in
+-	(*-os2-emx*|*-msdosdjgpp*|*-cygwin*|*-msys*|*-mingw*|*-uwin*|darwin*)
++	*-os2-emx*|*-msdosdjgpp*|*-cygwin*|*-msys*|*-mingw*|*-uwin*|darwin*)
+ 		cf_cv_mixedcase=no
+ 		;;
+-	(*)
++	*)
+ 		cf_cv_mixedcase=yes
+ 		;;
+ 	esac
+@@ -4713,19 +4713,19 @@
+ CF_EOF
+ 		cf_result=`${MAKE:-make} -k -f cf_makeflags.tmp 2>/dev/null | ${FGREP-fgrep} -v "ing directory" | sed -e 's,[ 	]*$,,'`
+ 		case "$cf_result" in
+-		(.*k|.*kw)
++		.*k|.*kw)
+ 			cf_result="`${MAKE:-make} -k -f cf_makeflags.tmp CC=cc 2>/dev/null`"
+ 			case "$cf_result" in
+-			(.*CC=*)	cf_cv_makeflags=
++			.*CC=*)	cf_cv_makeflags=
+ 				;;
+-			(*)	cf_cv_makeflags=$cf_option
++			*)	cf_cv_makeflags=$cf_option
+ 				;;
+ 			esac
+ 			break
+ 			;;
+-		(.-)
++		.-)
+ 			;;
+-		(*)
++		*)
+ 
+ echo "${as_me:-configure}:4730: testing given option \"$cf_option\",no match \"$cf_result\" ..." 1>&5
+ 
+@@ -5115,7 +5115,7 @@
+ else
+ 
+ 	case "$cf_cv_system_name" in
+-	(*-msvc*)
++	*-msvc*)
+ 		cf_cv_ar_flags=''
+ 		cat >mk_static_lib.sh <<-EOF
+ 		#!$SHELL
+@@ -5127,7 +5127,7 @@
+ 		chmod +x mk_static_lib.sh
+ 		AR=`pwd`/mk_static_lib.sh
+ 		;;
+-	(*)
++	*)
+ 		cf_cv_ar_flags=unknown
+ 		for cf_ar_flags in -curvU -curv curv -crv crv -cqv cqv -rv rv
+ 		do
+@@ -5190,9 +5190,9 @@
+ if test "${with_install_prefix+set}" = set; then
+   withval="$with_install_prefix"
+   case "x$withval" in
+-	(xyes|xno)
++	xyes|xno)
+ 		;;
+-	(*)	DESTDIR="$withval"
++	*)	DESTDIR="$withval"
+ 		;;
+ 	esac
+ fi;
+@@ -5206,7 +5206,7 @@
+ # compiler, etc., but we need a build compiler to generate parts of the source.
+ 
+ case "$cf_cv_system_name" in
+-(*-msvc*)
++*-msvc*)
+ 	LDFLAGS="$LDFLAGS user32.lib"
+ 	export LDFLAGS
+ 	;;
+@@ -5436,11 +5436,11 @@
+ else
+ 	LIBTOOL_VERSION="-version-info"
+ 	case "x$VERSION" in
+-	(x)
++	x)
+ 		{ echo "$as_me:5440: WARNING: VERSION was not set" >&5
+ echo "$as_me: WARNING: VERSION was not set" >&2;}
+ 		;;
+-	(x*.*.*)
++	x*.*.*)
+ 		ABI_VERSION="$VERSION"
+ 		test -n "$verbose" && echo "	ABI_VERSION: $ABI_VERSION" 1>&6
+ 
+@@ -5447,7 +5447,7 @@
+ echo "${as_me:-configure}:5447: testing ABI_VERSION: $ABI_VERSION ..." 1>&5
+ 
+ 		;;
+-	(x*:*:*)
++	x*:*:*)
+ 		ABI_VERSION=`echo "$VERSION" | sed -e 's/:/./g'`
+ 		test -n "$verbose" && echo "	ABI_VERSION: $ABI_VERSION" 1>&6
+ 
+@@ -5454,7 +5454,7 @@
+ echo "${as_me:-configure}:5454: testing ABI_VERSION: $ABI_VERSION ..." 1>&5
+ 
+ 		;;
+-	(*)
++	*)
+ 		{ echo "$as_me:5458: WARNING: unexpected VERSION value: $VERSION" >&5
+ echo "$as_me: WARNING: unexpected VERSION value: $VERSION" >&2;}
+ 		;;
+@@ -5500,24 +5500,24 @@
+ fi
+ 
+ case ".$with_libtool" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval with_libtool="$with_libtool"
+ 	case ".$with_libtool" in
+-	(.NONE/*)
++	.NONE/*)
+ 		with_libtool=`echo "$with_libtool" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	with_libtool=`echo "$with_libtool" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:5521: error: expected a pathname, not \"$with_libtool\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$with_libtool\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -5747,9 +5747,9 @@
+ 	then
+ 		cf_check_libtool_version=`$LIBTOOL --version 2>&1 | sed -e '/^$/d' -e 's,[()],...,g' -e 's,[ ],-,g' -e '2,$d'`
+ 		case "x$cf_check_libtool_version" in
+-		(*...GNU-libtool...*)
++		*...GNU-libtool...*)
+ 			;;
+-		(*)
++		*)
+ 			{ { echo "$as_me:5753: error: This is not GNU libtool" >&5
+ echo "$as_me: error: This is not GNU libtool" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -5769,7 +5769,7 @@
+ 	# special hack to add -no-undefined (which libtool should do for itself)
+ 	LT_UNDEF=
+ 	case "$cf_cv_system_name" in
+-	(cygwin*|msys*|mingw32*|os2*|uwin*|aix[4-7])
++	cygwin*|msys*|mingw32*|os2*|uwin*|aix[4-7])
+ 		LT_UNDEF=-no-undefined
+ 		;;
+ 	esac
+@@ -5776,11 +5776,11 @@
+ 
+ 	# special hack to add --tag option for C++ compiler
+ 	case "$cf_cv_libtool_version" in
+-	(1.[5-9]*|[2-9].[0-9.a-z]*)
++	1.[5-9]*|[2-9].[0-9.a-z]*)
+ 		LIBTOOL_CXX="$LIBTOOL --tag=CXX"
+ 		LIBTOOL="$LIBTOOL --tag=CC"
+ 		;;
+-	(*)
++	*)
+ 		LIBTOOL_CXX="$LIBTOOL"
+ 		;;
+ 	esac
+@@ -5917,7 +5917,7 @@
+ then
+ 
+ 	case "$cf_cv_system_name" in
+-	(OS/2*|os2*)
++	OS/2*|os2*)
+ 		if test "$DFT_LWR_MODEL" = libtool; then
+ 			LIB_PREFIX='lib'
+ 		else
+@@ -5924,10 +5924,10 @@
+ 			LIB_PREFIX=''
+ 		fi
+ 		;;
+-	(*-msvc*)
++	*-msvc*)
+ 		LIB_PREFIX=''
+ 		;;
+-	(*)	LIB_PREFIX='lib'
++	*)	LIB_PREFIX='lib'
+ 		;;
+ 	esac
+ cf_prefix=$LIB_PREFIX
+@@ -5944,8 +5944,8 @@
+ 	echo "$as_me:5944: checking for PATH separator" >&5
+ echo $ECHO_N "checking for PATH separator... $ECHO_C" >&6
+ 	case "$cf_cv_system_name" in
+-	(os2*)	PATH_SEPARATOR=';'  ;;
+-	(*)	${PATH_SEPARATOR:=':'}  ;;
++	os2*)	PATH_SEPARATOR=';'  ;;
++	*)	${PATH_SEPARATOR:=':'}  ;;
+ 	esac
+ 
+ 	echo "$as_me:5951: result: $PATH_SEPARATOR" >&5
+@@ -6386,17 +6386,17 @@
+ echo "$as_me:6386: checking for default loader flags" >&5
+ echo $ECHO_N "checking for default loader flags... $ECHO_C" >&6
+ case "$DFT_LWR_MODEL" in
+-(libtool) LD_MODEL=''   ;;
+-(normal)  LD_MODEL=''   ;;
+-(debug)   LD_MODEL=$CC_G_OPT ;;
+-(profile) LD_MODEL='-pg';;
+-(shared)  LD_MODEL=''   ;;
++libtool) LD_MODEL=''   ;;
++normal)  LD_MODEL=''   ;;
++debug)   LD_MODEL=$CC_G_OPT ;;
++profile) LD_MODEL='-pg';;
++shared)  LD_MODEL=''   ;;
+ esac
+ echo "$as_me:6395: result: ${LD_MODEL:-(none)}" >&5
+ echo "${ECHO_T}${LD_MODEL:-(none)}" >&6
+ 
+ case "$DFT_LWR_MODEL" in
+-(shared)
++shared)
+ 
+ echo "$as_me:6401: checking if rpath option should be used" >&5
+ echo $ECHO_N "checking if rpath option should be used... $ECHO_C" >&6
+@@ -6435,7 +6435,7 @@
+ 	echo "$as_me:6435: checking for an rpath option" >&5
+ echo $ECHO_N "checking for an rpath option... $ECHO_C" >&6
+ 	case "$cf_cv_system_name" in
+-	(irix*)
++	irix*)
+ 		if test "$GCC" = yes; then
+ 			LD_RPATH_OPT="-Wl,-rpath,"
+ 		else
+@@ -6442,25 +6442,25 @@
+ 			LD_RPATH_OPT="-rpath "
+ 		fi
+ 		;;
+-	(linux*|gnu*|k*bsd*-gnu|freebsd*)
++	linux*|gnu*|k*bsd*-gnu|freebsd*)
+ 		LD_RPATH_OPT="-Wl,-rpath,"
+ 		;;
+-	(openbsd[2-9].*|mirbsd*)
++	openbsd[2-9].*|mirbsd*)
+ 		LD_RPATH_OPT="-Wl,-rpath,"
+ 		;;
+-	(dragonfly*)
++	dragonfly*)
+ 		LD_RPATH_OPT="-rpath "
+ 		;;
+-	(netbsd*)
++	netbsd*)
+ 		LD_RPATH_OPT="-Wl,-rpath,"
+ 		;;
+-	(osf*|mls+*)
++	osf*|mls+*)
+ 		LD_RPATH_OPT="-rpath "
+ 		;;
+-	(solaris2*)
++	solaris2*)
+ 		LD_RPATH_OPT="-R"
+ 		;;
+-	(*)
++	*)
+ 		;;
+ 	esac
+ 	echo "$as_me:6466: result: $LD_RPATH_OPT" >&5
+@@ -6467,7 +6467,7 @@
+ echo "${ECHO_T}$LD_RPATH_OPT" >&6
+ 
+ 	case "x$LD_RPATH_OPT" in
+-	(x-R*)
++	x-R*)
+ 		echo "$as_me:6471: checking if we need a space after rpath option" >&5
+ echo $ECHO_N "checking if we need a space after rpath option... $ECHO_C" >&6
+ 		cf_save_LIBS="$LIBS"
+@@ -6550,13 +6550,13 @@
+   withval="$with_shlib_version"
+   test -z "$withval" && withval=auto
+ 	case "$withval" in
+-	(yes)
++	yes)
+ 		cf_cv_shlib_version=auto
+ 		;;
+-	(rel|abi|auto)
++	rel|abi|auto)
+ 		cf_cv_shlib_version=$withval
+ 		;;
+-	(*)
++	*)
+ 		echo "$as_me:6560: result: $withval" >&5
+ echo "${ECHO_T}$withval" >&6
+ 		{ { echo "$as_me:6562: error: option value must be one of: rel, abi, or auto" >&5
+@@ -6583,7 +6583,7 @@
+ 		cf_try_fPIC=yes
+ 	else
+ 		case "$cf_cv_system_name" in
+-		(*linux*)	# e.g., PGI compiler
++		*linux*)	# e.g., PGI compiler
+ 			cf_try_fPIC=yes
+ 			;;
+ 		esac
+@@ -6636,7 +6636,7 @@
+ 	cf_cv_shlib_version_infix=no
+ 
+ 	case "$cf_cv_system_name" in
+-	(aix4.3-9*|aix[5-7]*)
++	aix4.3-9*|aix[5-7]*)
+ 		if test "$GCC" = yes; then
+ 			CC_SHARED_OPTS='-Wl,-brtl'
+ 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-brtl -Wl,-blibpath:${RPATH_LIST}:/usr/lib -o $@'
+@@ -6646,10 +6646,10 @@
+ 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -G -Wl,-brtl -Wl,-blibpath:${RPATH_LIST}:/usr/lib -o $@'
+ 		fi
+ 		;;
+-	(beos*)
++	beos*)
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -o $@ -Xlinker -soname=`basename $@` -nostart -e 0'
+ 		;;
+-	(cygwin*)
++	cygwin*)
+ 		CC_SHARED_OPTS=
+ 		MK_SHARED_LIB=$SHELL' '$rel_builddir'/mk_shared_lib.sh $@ ${CC} ${CFLAGS}'
+ 		RM_SHARED_OPTS="$RM_SHARED_OPTS $rel_builddir/mk_shared_lib.sh *.dll.a"
+@@ -6671,7 +6671,7 @@
+ CF_EOF
+ 		chmod +x mk_shared_lib.sh
+ 		;;
+-	(msys*)
++	msys*)
+ 		CC_SHARED_OPTS=
+ 		MK_SHARED_LIB=$SHELL' '$rel_builddir'/mk_shared_lib.sh $@ ${CC} ${CFLAGS}'
+ 		RM_SHARED_OPTS="$RM_SHARED_OPTS $rel_builddir/mk_shared_lib.sh *.dll.a"
+@@ -6693,7 +6693,7 @@
+ CF_EOF
+ 		chmod +x mk_shared_lib.sh
+ 		;;
+-	(darwin*)
++	darwin*)
+ 		cf_try_cflags="no-cpp-precomp"
+ 		CC_SHARED_OPTS="-dynamic"
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -dynamiclib -install_name ${libdir}/`basename $@` -compatibility_version ${ABI_VERSION} -current_version ${ABI_VERSION} -o $@'
+@@ -6746,7 +6746,7 @@
+ 			LDFLAGS="$LDFLAGS -Wl,-search_paths_first"
+ 		fi
+ 		;;
+-	(haiku*)
++	haiku*)
+ 
+ 	test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+ 	if test "$cf_cv_shlib_version" = rel; then
+@@ -6757,7 +6757,7 @@
+ 
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-soname,'$cf_cv_shared_soname',-stats,-lc -o $@'
+ 		;;
+-	(hpux[7-8]*)
++	hpux[7-8]*)
+ 		# HP-UX 8.07 ld lacks "+b" option used for libdir search-list
+ 		if test "$GCC" != yes; then
+ 			CC_SHARED_OPTS='+Z'
+@@ -6765,7 +6765,7 @@
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -b -o $@'
+ 		INSTALL_LIB="-m 555"
+ 		;;
+-	(hpux*)
++	hpux*)
+ 		# (tested with gcc 2.7.2 -- I don't have c89)
+ 		if test "$GCC" = yes; then
+ 			LD_SHARED_OPTS='-Xlinker +b -Xlinker ${libdir}'
+@@ -6778,7 +6778,7 @@
+ 		# readonly to exploit a quirk in the memory manager.
+ 		INSTALL_LIB="-m 555"
+ 		;;
+-	(interix*)
++	interix*)
+ 		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+ 		if test "$cf_cv_shlib_version" = rel; then
+ 			cf_shared_soname='`basename $@ .${REL_VERSION}`.${ABI_VERSION}'
+@@ -6788,7 +6788,7 @@
+ 		CC_SHARED_OPTS=
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-rpath,${RPATH_LIST} -Wl,-h,'$cf_shared_soname' -o $@'
+ 		;;
+-	(irix*)
++	irix*)
+ 		if test "$cf_cv_enable_rpath" = yes ; then
+ 			EXTRA_LDFLAGS="${cf_ld_rpath_opt}\${RPATH_LIST} $EXTRA_LDFLAGS"
+ 		fi
+@@ -6801,7 +6801,7 @@
+ 		fi
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+-	(linux*|gnu*|k*bsd*-gnu)
++	linux*|gnu*|k*bsd*-gnu)
+ 		if test "$DFT_LWR_MODEL" = "shared" && test -n "$LD_RPATH_OPT" ; then
+ 			LOCAL_LDFLAGS="${LD_RPATH_OPT}\$(LOCAL_LIBDIR)"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+@@ -6819,7 +6819,7 @@
+ 
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-soname,'$cf_cv_shared_soname',-stats,-lc -o $@'
+ 		;;
+-	(mingw*msvc*)
++	mingw*msvc*)
+ 		cf_cv_shlib_version=msvcdll
+ 		cf_cv_shlib_version_infix=msvcdll
+ 		shlibdir=$bindir
+@@ -6925,7 +6925,7 @@
+ 		LINK_PROGS="$SHELL ${rel_builddir}/mk_prog.sh"
+ 		LINK_TESTS="$SHELL ${rel_builddir}/mk_prog.sh"
+ 		;;
+-	(mingw*)
++	mingw*)
+ 		cf_cv_shlib_version=mingw
+ 		cf_cv_shlib_version_infix=mingw
+ 		shlibdir=$bindir
+@@ -6952,7 +6952,7 @@
+ CF_EOF
+ 		chmod +x mk_shared_lib.sh
+ 		;;
+-	(openbsd[2-9].*|mirbsd*)
++	openbsd[2-9].*|mirbsd*)
+ 		if test "$DFT_LWR_MODEL" = "shared" && test -n "$LD_RPATH_OPT" ; then
+ 			LOCAL_LDFLAGS="${LD_RPATH_OPT}\$(LOCAL_LIBDIR)"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+@@ -6971,20 +6971,20 @@
+ 
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-Bshareable,-soname,'$cf_cv_shared_soname',-stats,-lc -o $@'
+ 		;;
+-	(nskJ*)
++	nskJ*)
+ 		CC_SHARED_OPTS=
+ 		MK_SHARED_LIB='${LD} -Wshared -Weld=-export_all -o $@'
+ 		;;
+-	(nskL*)
++	nskL*)
+ 		CC_SHARED_OPTS=
+ 		MK_SHARED_LIB='${LD} -Wshared -Wxld=-export_all -o $@'
+ 		;;
+-	(nto-qnx*|openbsd*|freebsd[12].*)
++	nto-qnx*|openbsd*|freebsd[12].*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -Bshareable -o $@'
+ 		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+ 		;;
+-	(dragonfly*|freebsd*)
++	dragonfly*|freebsd*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		if test "$DFT_LWR_MODEL" = "shared" && test "$cf_cv_enable_rpath" = yes ; then
+ 			LOCAL_LDFLAGS="${cf_ld_rpath_opt}\$(LOCAL_LIBDIR)"
+@@ -7001,7 +7001,7 @@
+ 
+ 		MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -Wl,-soname,'$cf_cv_shared_soname',-stats,-lc -o $@'
+ 		;;
+-	(netbsd*)
++	netbsd*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		if test "$DFT_LWR_MODEL" = "shared" && test "$cf_cv_enable_rpath" = yes ; then
+ 			LOCAL_LDFLAGS="${cf_ld_rpath_opt}\$(LOCAL_LIBDIR)"
+@@ -7027,13 +7027,13 @@
+ 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -o $@'
+ 		fi
+ 		;;
+-	(osf*|mls+*)
++	osf*|mls+*)
+ 		# tested with OSF/1 V3.2 and 'cc'
+ 		# tested with OSF/1 V3.2 and gcc 2.6.3 (but the c++ demo didn't
+ 		# link with shared libs).
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -set_version ${REL_VERSION}:${ABI_VERSION} -expect_unresolved "*" -shared -soname `basename $@`'
+ 		case "$host_os" in
+-		(osf4*)
++		osf4*)
+ 			MK_SHARED_LIB="${MK_SHARED_LIB} -msym"
+ 			;;
+ 		esac
+@@ -7044,7 +7044,7 @@
+ 		fi
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+-	(sco3.2v5*)  # also uw2* and UW7: hops 13-Apr-98
++	sco3.2v5*)  # also uw2* and UW7: hops 13-Apr-98
+ 		# tested with osr5.0.5
+ 		if test "$GCC" != yes; then
+ 			CC_SHARED_OPTS='-belf -KPIC'
+@@ -7058,7 +7058,7 @@
+ 		LINK_PROGS='LD_RUN_PATH=${libdir}'
+ 		LINK_TESTS='Pwd=`pwd`;LD_RUN_PATH=`dirname $${Pwd}`/lib'
+ 		;;
+-	(sunos4*)
++	sunos4*)
+ 		# tested with SunOS 4.1.1 and gcc 2.7.0
+ 		if test "$GCC" != yes; then
+ 			CC_SHARED_OPTS='-KPIC'
+@@ -7066,7 +7066,7 @@
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -assert pure-text -o $@'
+ 		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+ 		;;
+-	(solaris2*)
++	solaris2*)
+ 		# tested with SunOS 5.5.1 (solaris 2.5.1) and gcc 2.7.2
+ 		# tested with SunOS 5.10 (solaris 10) and gcc 3.4.3
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+@@ -7127,7 +7127,7 @@
+ 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -dy -G -Wl,-h,'$cf_cv_shared_soname' -o $@'
+ 		fi
+ 		;;
+-	(sysv5uw7*|unix_sv*)
++	sysv5uw7*|unix_sv*)
+ 		# tested with UnixWare 7.1.0 (gcc 2.95.2 and cc)
+ 		if test "$GCC" != yes; then
+ 			CC_SHARED_OPTS='-KPIC'
+@@ -7134,7 +7134,7 @@
+ 		fi
+ 		MK_SHARED_LIB='${LD} ${LDFLAGS} -d y -G -o $@'
+ 		;;
+-	(*)
++	*)
+ 		CC_SHARED_OPTS='unknown'
+ 		MK_SHARED_LIB='echo unknown'
+ 		;;
+@@ -7142,12 +7142,12 @@
+ 
+ 	# This works if the last tokens in $MK_SHARED_LIB are the -o target.
+ 	case "$cf_cv_shlib_version" in
+-	(rel|abi)
++	rel|abi)
+ 		case "$MK_SHARED_LIB" in
+-		(*'-o $@')
++		*'-o $@')
+ 			test "$cf_cv_do_symlinks" = no && cf_cv_do_symlinks=yes
+ 			;;
+-		(*)
++		*)
+ 			{ echo "$as_me:7151: WARNING: ignored --with-shlib-version" >&5
+ echo "$as_me: WARNING: ignored --with-shlib-version" >&2;}
+ 			;;
+@@ -7204,7 +7204,7 @@
+ 
+ for model in $cf_list_models ; do
+ 	case "$model" in
+-	(libtool)
++	libtool)
+ 
+ echo "$as_me:7209: checking for additional libtool options" >&5
+ echo $ECHO_N "checking for additional libtool options... $ECHO_C" >&6
+@@ -7220,9 +7220,9 @@
+ echo "${ECHO_T}$with_libtool_opts" >&6
+ 
+ case .$with_libtool_opts in
+-(.yes|.no|.)
++.yes|.no|.)
+ 	;;
+-(*)
++*)
+ 	LIBTOOL_OPTS="$LIBTOOL_OPTS $with_libtool_opts"
+ 	;;
+ esac
+@@ -7251,7 +7251,7 @@
+ fi
+ 
+ 		;;
+-	(shared)
++	shared)
+ 		if test "$CC_SHARED_OPTS" = "unknown"; then
+ 			{ { echo "$as_me:7256: error: Shared libraries are not supported in this version" >&5
+ echo "$as_me: error: Shared libraries are not supported in this version" >&2;}
+@@ -7313,18 +7313,18 @@
+   with_versioned_syms=no
+ fi;
+ case "x$with_versioned_syms" in
+-(xyes)
++xyes)
+ 	with_versioned_syms='${top_srcdir}/package/${PACKAGE}.map'
+ 
+ 	;;
+-(xno)
++xno)
+ 	;;
+-(x/*)
++x/*)
+ 	test -f "$with_versioned_syms" || { { echo "$as_me:7323: error: expected a filename: $with_versioned_syms" >&5
+ echo "$as_me: error: expected a filename: $with_versioned_syms" >&2;}
+    { (exit 1); exit 1; }; }
+ 	;;
+-(*)
++*)
+ 	test -f "$with_versioned_syms" || { { echo "$as_me:7328: error: expected a filename: $with_versioned_syms" >&5
+ echo "$as_me: error: expected a filename: $with_versioned_syms" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -7342,7 +7342,7 @@
+ then
+ 	RESULTING_SYMS=$with_versioned_syms
+ 	case "x$MK_SHARED_LIB" in
+-	(*-Wl,*)
++	*-Wl,*)
+ 		VERSIONED_SYMS="-Wl,--version-script,\${RESULTING_SYMS}"
+ 		MK_SHARED_LIB=`echo "$MK_SHARED_LIB" | sed -e "s%-Wl,%\\${VERSIONED_SYMS} -Wl,%"`
+ 		test -n "$verbose" && echo "	MK_SHARED_LIB:  $MK_SHARED_LIB" 1>&6
+@@ -7350,7 +7350,7 @@
+ echo "${as_me:-configure}:7350: testing MK_SHARED_LIB:  $MK_SHARED_LIB ..." 1>&5
+ 
+ 		;;
+-	(*-dy\ *)
++	*-dy\ *)
+ 		VERSIONED_SYMS="-Wl,-M,\${RESULTING_SYMS}"
+ 		MK_SHARED_LIB=`echo "$MK_SHARED_LIB" | sed -e "s%-dy%\\${VERSIONED_SYMS} -dy%"`
+ 		test -n "$verbose" && echo "	MK_SHARED_LIB:  $MK_SHARED_LIB" 1>&6
+@@ -7358,7 +7358,7 @@
+ echo "${as_me:-configure}:7358: testing MK_SHARED_LIB:  $MK_SHARED_LIB ..." 1>&5
+ 
+ 		;;
+-	(*)
++	*)
+ 		{ echo "$as_me:7362: WARNING: this system does not support versioned-symbols" >&5
+ echo "$as_me: WARNING: this system does not support versioned-symbols" >&2;}
+ 		;;
+@@ -8082,11 +8082,11 @@
+ for cf_add_cflags in $cf_pkgconfig_incs
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -8109,11 +8109,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -8129,7 +8129,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -8137,7 +8137,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -8206,9 +8206,9 @@
+ 
+ 	# if pkgconfig gave no results, look for the libraries directly
+ 	case "$LIBS" in
+-	(*pcre2-posix*|*pcreposix*)
++	*pcre2-posix*|*pcreposix*)
+ 		;;
+-	(*)
++	*)
+ 		echo "$as_me:8212: checking for regcomp in -lpcre2-posix" >&5
+ echo $ECHO_N "checking for regcomp in -lpcre2-posix... $ECHO_C" >&6
+ if test "${ac_cv_lib_pcre2_posix_regcomp+set}" = set; then
+@@ -8709,7 +8709,7 @@
+ for cf_rpath_src in $LDFLAGS
+ do
+ 	case "$cf_rpath_src" in
+-	(-L*)
++	-L*)
+ 
+ 		# check if this refers to a directory which we will ignore
+ 		cf_rpath_skip=no
+@@ -8763,7 +8763,7 @@
+ for cf_rpath_src in $LIBS
+ do
+ 	case "$cf_rpath_src" in
+-	(-L*)
++	-L*)
+ 
+ 		# check if this refers to a directory which we will ignore
+ 		cf_rpath_skip=no
+@@ -8861,12 +8861,12 @@
+ if test "${with_extra_suffix+set}" = set; then
+   withval="$with_extra_suffix"
+   case x$withval in
+-	(xno)
++	xno)
+ 		;;
+-	(xyes|x)
++	xyes|x)
+ 		EXTRA_SUFFIX=$cf_cv_abi_version
+ 		;;
+-	(*)
++	*)
+ 		EXTRA_SUFFIX=$withval
+ 		;;
+ 	esac
+@@ -8903,10 +8903,10 @@
+ echo "${ECHO_T}$use_database" >&6
+ 
+ case "$host_os" in
+-(os2*)
++os2*)
+ 	TERMINFO_SRC='${top_srcdir}/misc/emx.src'
+ 	;;
+-(*)
++*)
+ 	TERMINFO_SRC='${top_srcdir}/misc/terminfo.src'
+ 	;;
+ esac
+@@ -8956,14 +8956,14 @@
+ echo "${ECHO_T}${with_fallback:-(none)}" >&6
+ 
+ case ".$with_fallback" in
+-(.|.no)
++.|.no)
+ 	FALLBACK_LIST=
+ 	;;
+-(.yes)
++.yes)
+ 	{ echo "$as_me:8963: WARNING: expected a list of terminal descriptions" >&5
+ echo "$as_me: WARNING: expected a list of terminal descriptions" >&2;}
+ 	;;
+-(*)
++*)
+ 	FALLBACK_LIST=`echo "$with_fallback" | sed -e 's/,/ /g'`
+ 	;;
+ esac
+@@ -9138,24 +9138,24 @@
+ fi
+ 
+ case ".$TIC" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval TIC="$TIC"
+ 	case ".$TIC" in
+-	(.NONE/*)
++	.NONE/*)
+ 		TIC=`echo "$TIC" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	TIC=`echo "$TIC" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:9159: error: expected a pathname, not \"$TIC\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$TIC\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -9223,24 +9223,24 @@
+ fi
+ 
+ case ".$cf_temp" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_temp="$cf_temp"
+ 	case ".$cf_temp" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_temp=`echo "$cf_temp" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_temp=`echo "$cf_temp" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	break
+ 	;;
+ esac
+@@ -9296,24 +9296,24 @@
+ fi
+ 
+ case ".$INFOCMP" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval INFOCMP="$INFOCMP"
+ 	case ".$INFOCMP" in
+-	(.NONE/*)
++	.NONE/*)
+ 		INFOCMP=`echo "$INFOCMP" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	INFOCMP=`echo "$INFOCMP" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:9317: error: expected a pathname, not \"$INFOCMP\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$INFOCMP\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -9381,24 +9381,24 @@
+ fi
+ 
+ case ".$cf_temp" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_temp="$cf_temp"
+ 	case ".$cf_temp" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_temp=`echo "$cf_temp" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_temp=`echo "$cf_temp" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	break
+ 	;;
+ esac
+@@ -9461,8 +9461,8 @@
+   with_xterm_new=yes
+ fi;
+ case "$with_xterm_new" in
+-(no) with_xterm_new=xterm-old;;
+-(*)	 with_xterm_new=xterm-new;;
++no) with_xterm_new=xterm-old;;
++*)	 with_xterm_new=xterm-new;;
+ esac
+ echo "$as_me:9467: result: $with_xterm_new" >&5
+ echo "${ECHO_T}$with_xterm_new" >&6
+@@ -9469,10 +9469,10 @@
+ WHICH_XTERM=$with_xterm_new
+ 
+ case $host_os in
+-(*linux-gnu|*cygwin|*mingw32|*msys)
++*linux-gnu|*cygwin|*mingw32|*msys)
+ 	want_xterm_kbs=DEL
+ 	;;
+-(*)
++*)
+ 	want_xterm_kbs=BS
+ 	;;
+ esac
+@@ -9488,16 +9488,16 @@
+   with_xterm_kbs=auto
+ fi;
+ case x$with_xterm_kbs in
+-(xyes|xno|xBS|xbs|x8)
++xyes|xno|xBS|xbs|x8)
+ 	with_xterm_kbs=BS
+ 	;;
+-(xDEL|xdel|x127)
++xDEL|xdel|x127)
+ 	with_xterm_kbs=DEL
+ 	;;
+-(xauto)
++xauto)
+ 	with_xterm_kbs=$want_xterm_kbs
+ 	;;
+-(*)
++*)
+ 	with_xterm_kbs=$withval
+ 	;;
+ esac
+@@ -9539,24 +9539,24 @@
+ fi
+ 
+ case ".$cf_src_path" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_src_path="$cf_src_path"
+ 	case ".$cf_src_path" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_src_path=`echo "$cf_src_path" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_src_path=`echo "$cf_src_path" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:9560: error: expected a pathname, not \"$cf_src_path\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$cf_src_path\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -9572,10 +9572,10 @@
+ # so we have to check/work around.  We do prefer the result of "eval"...
+ eval cf_dst_eval="$cf_dst_path"
+ case "x$cf_dst_eval" in
+-(xNONE*)
++xNONE*)
+ 	TERMINFO_DIRS=$cf_dst_path
+ 	;;
+-(*)
++*)
+ 	TERMINFO_DIRS="$cf_dst_eval"
+ 	;;
+ esac
+@@ -9613,24 +9613,24 @@
+ fi
+ 
+ case ".$withval" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval withval="$withval"
+ 	case ".$withval" in
+-	(.NONE/*)
++	.NONE/*)
+ 		withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:9634: error: expected a pathname, not \"$withval\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$withval\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -9717,10 +9717,10 @@
+ else
+ 
+ 	case x$AWK in
+-	(x)
++	x)
+ 		eval with_big_strings=no
+ 		;;
+-	(*)
++	*)
+ 		if ( ${AWK} 'BEGIN { xx = "x"; while (length(xx) < 12000) { xx = xx "x"; }; printf("%s\n", xx); }' 2>/dev/null \
+ 			| $AWK '{ printf "%d\n", length($0); }' 2>/dev/null | $AWK 'BEGIN { eqls=0; recs=0; } { recs++; if ($0 == 12000) eqls++; } END { if (recs != 1 || eqls != 1) exit 1; }' 2>/dev/null >/dev/null ) ; then
+ 			eval with_big_strings=yes
+@@ -9796,24 +9796,24 @@
+ fi
+ 
+ case ".$cf_src_path" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_src_path="$cf_src_path"
+ 	case ".$cf_src_path" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_src_path=`echo "$cf_src_path" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_src_path=`echo "$cf_src_path" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:9817: error: expected a pathname, not \"$cf_src_path\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$cf_src_path\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -9829,10 +9829,10 @@
+ # so we have to check/work around.  We do prefer the result of "eval"...
+ eval cf_dst_eval="$cf_dst_path"
+ case "x$cf_dst_eval" in
+-(xNONE*)
++xNONE*)
+ 	TERMPATH=$cf_dst_path
+ 	;;
+-(*)
++*)
+ 	TERMPATH="$cf_dst_eval"
+ 	;;
+ esac
+@@ -10390,17 +10390,17 @@
+ cf_xopen_source=
+ 
+ case "$host_os" in
+-(aix[4-7]*)
++aix[4-7]*)
+ 	cf_xopen_source="-D_ALL_SOURCE"
+ 	;;
+-(darwin[0-8].*)
++darwin[0-8].*)
+ 	cf_xopen_source="-D_APPLE_C_SOURCE"
+ 	;;
+-(darwin*)
++darwin*)
+ 	cf_xopen_source="-D_DARWIN_C_SOURCE"
+ 	cf_XOPEN_SOURCE=
+ 	;;
+-(freebsd*|dragonfly*|midnightbsd*)
++freebsd*|dragonfly*|midnightbsd*)
+ 	# 5.x headers associate
+ 	#	_XOPEN_SOURCE=600 with _POSIX_C_SOURCE=200112L
+ 	#	_XOPEN_SOURCE=500 with _POSIX_C_SOURCE=199506L
+@@ -10408,17 +10408,17 @@
+ 	cf_XOPEN_SOURCE=600
+ 	cf_xopen_source="-D_BSD_TYPES -D__BSD_VISIBLE -D_POSIX_C_SOURCE=$cf_POSIX_C_SOURCE -D_XOPEN_SOURCE=$cf_XOPEN_SOURCE"
+ 	;;
+-(hpux11*)
++hpux11*)
+ 	cf_xopen_source="-D_HPUX_SOURCE -D_XOPEN_SOURCE=500"
+ 	;;
+-(hpux*)
++hpux*)
+ 	cf_xopen_source="-D_HPUX_SOURCE"
+ 	;;
+-(irix[56].*)
++irix[56].*)
+ 	cf_xopen_source="-D_SGI_SOURCE"
+ 	cf_XOPEN_SOURCE=
+ 	;;
+-(linux*gnu|linux*gnuabi64|linux*gnuabin32|linux*gnueabi|linux*gnueabihf|linux*gnux32|uclinux*|gnu*|mint*|k*bsd*-gnu|cygwin|msys|mingw*|linux*uclibc)
++linux*gnu|linux*gnuabi64|linux*gnuabin32|linux*gnueabi|linux*gnueabihf|linux*gnux32|uclinux*|gnu*|mint*|k*bsd*-gnu|cygwin|msys|mingw*|linux*uclibc)
+ 
+ cf_gnu_xopen_source=$cf_XOPEN_SOURCE
+ 
+@@ -10547,11 +10547,11 @@
+ for cf_add_cflags in -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=$cf_gnu_xopen_source
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -10574,11 +10574,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -10594,7 +10594,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -10602,7 +10602,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -10734,11 +10734,11 @@
+ for cf_add_cflags in -D_GNU_SOURCE
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -10761,11 +10761,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -10781,7 +10781,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -10789,7 +10789,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -10929,10 +10929,10 @@
+ fi
+ 
+ 	;;
+-(minix*)
++minix*)
+ 	cf_xopen_source="-D_NETBSD_SOURCE" # POSIX.1-2001 features are ifdef'd with this...
+ 	;;
+-(mirbsd*)
++mirbsd*)
+ 	# setting _XOPEN_SOURCE or _POSIX_SOURCE breaks <sys/select.h> and other headers which use u_int / u_short types
+ 	cf_XOPEN_SOURCE=
+ 
+@@ -10992,14 +10992,14 @@
+ cat "conftest.$ac_ext" >&5
+ cf_want_posix_source=no
+ 	 case .$cf_POSIX_C_SOURCE in
+-	 (.[12]??*)
++	 .[12]??*)
+ 		cf_cv_posix_c_source="-D_POSIX_C_SOURCE=$cf_POSIX_C_SOURCE"
+ 		;;
+-	 (.2)
++	 .2)
+ 		cf_cv_posix_c_source="-D_POSIX_C_SOURCE=$cf_POSIX_C_SOURCE"
+ 		cf_want_posix_source=yes
+ 		;;
+-	 (.*)
++	 .*)
+ 		cf_want_posix_source=yes
+ 		;;
+ 	 esac
+@@ -11106,11 +11106,11 @@
+ for cf_add_cflags in $cf_cv_posix_c_source
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -11133,11 +11133,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -11153,7 +11153,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -11161,7 +11161,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -11201,10 +11201,10 @@
+ fi # cf_cv_posix_visible
+ 
+ 	;;
+-(netbsd*)
++netbsd*)
+ 	cf_xopen_source="-D_NETBSD_SOURCE" # setting _XOPEN_SOURCE breaks IPv6 for lynx on NetBSD 1.6, breaks xterm, is not needed for ncursesw
+ 	;;
+-(openbsd[6-9]*)
++openbsd[6-9]*)
+ 	# OpenBSD 6.x has broken locale support, both compile-time and runtime.
+ 	# see https://www.mail-archive.com/bugs@openbsd.org/msg13200.html
+ 	# Abusing the conformance level is a workaround.
+@@ -11213,32 +11213,32 @@
+ 	cf_xopen_source="-D_BSD_SOURCE"
+ 	cf_XOPEN_SOURCE=700
+ 	;;
+-(openbsd[4-5]*)
++openbsd[4-5]*)
+ 	# setting _XOPEN_SOURCE lower than 500 breaks g++ compile with wchar.h, needed for ncursesw
+ 	cf_xopen_source="-D_BSD_SOURCE"
+ 	cf_XOPEN_SOURCE=600
+ 	;;
+-(openbsd*)
++openbsd*)
+ 	# setting _XOPEN_SOURCE breaks xterm on OpenBSD 2.8, is not needed for ncursesw
+ 	;;
+-(osf[45]*)
++osf[45]*)
+ 	cf_xopen_source="-D_OSF_SOURCE"
+ 	;;
+-(nto-qnx*)
++nto-qnx*)
+ 	cf_xopen_source="-D_QNX_SOURCE"
+ 	;;
+-(sco*)
++sco*)
+ 	# setting _XOPEN_SOURCE breaks Lynx on SCO Unix / OpenServer
+ 	;;
+-(solaris2.*)
++solaris2.*)
+ 	cf_xopen_source="-D__EXTENSIONS__"
+ 	cf_cv_xopen_source=broken
+ 	;;
+-(sysv4.2uw2.*) # Novell/SCO UnixWare 2.x (tested on 2.1.2)
++sysv4.2uw2.*) # Novell/SCO UnixWare 2.x (tested on 2.1.2)
+ 	cf_XOPEN_SOURCE=
+ 	cf_POSIX_C_SOURCE=
+ 	;;
+-(*)
++*)
+ 
+ echo "$as_me:11243: checking if we should define _XOPEN_SOURCE" >&5
+ echo $ECHO_N "checking if we should define _XOPEN_SOURCE... $ECHO_C" >&6
+@@ -11346,7 +11346,7 @@
+ for cf_add_cflags in $cf_temp_xopen_source
+ do
+ 	case "x$cf_add_cflags" in
+-	(x-[DU]*)
++	x-[DU]*)
+ 
+ cf_tmp_cflag=`echo "x$cf_add_cflags" | sed -e 's/^.//' -e 's/=.*//'`
+ while true
+@@ -11377,11 +11377,11 @@
+ for cf_add_cflags in $cf_add_cflags
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -11404,11 +11404,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -11424,7 +11424,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -11432,7 +11432,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -11529,14 +11529,14 @@
+ cat "conftest.$ac_ext" >&5
+ cf_want_posix_source=no
+ 	 case .$cf_POSIX_C_SOURCE in
+-	 (.[12]??*)
++	 .[12]??*)
+ 		cf_cv_posix_c_source="-D_POSIX_C_SOURCE=$cf_POSIX_C_SOURCE"
+ 		;;
+-	 (.2)
++	 .2)
+ 		cf_cv_posix_c_source="-D_POSIX_C_SOURCE=$cf_POSIX_C_SOURCE"
+ 		cf_want_posix_source=yes
+ 		;;
+-	 (.*)
++	 .*)
+ 		cf_want_posix_source=yes
+ 		;;
+ 	 esac
+@@ -11643,11 +11643,11 @@
+ for cf_add_cflags in $cf_cv_posix_c_source
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -11670,11 +11670,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -11690,7 +11690,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -11698,7 +11698,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -11792,7 +11792,7 @@
+ for cf_add_cflags in $cf_xopen_source
+ do
+ 	case "x$cf_add_cflags" in
+-	(x-[DU]*)
++	x-[DU]*)
+ 
+ cf_tmp_cflag=`echo "x$cf_add_cflags" | sed -e 's/^.//' -e 's/=.*//'`
+ while true
+@@ -11829,11 +11829,11 @@
+ for cf_add_cflags in $cf_add_cflags
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -11856,11 +11856,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -11876,7 +11876,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -11884,7 +11884,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -12120,7 +12120,7 @@
+ for cf_add_cflags in $cf_temp_xopen_source
+ do
+ 	case "x$cf_add_cflags" in
+-	(x-[DU]*)
++	x-[DU]*)
+ 
+ cf_tmp_cflag=`echo "x$cf_add_cflags" | sed -e 's/^.//' -e 's/=.*//'`
+ while true
+@@ -12151,11 +12151,11 @@
+ for cf_add_cflags in $cf_add_cflags
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -12178,11 +12178,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -12198,7 +12198,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -12206,7 +12206,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -12485,9 +12485,9 @@
+ EOF
+ 
+ 	case "$CPPFLAGS" in
+-	(*_XOPEN_SOURCE=*)
++	*_XOPEN_SOURCE=*)
+ 		;;
+-	(*)
++	*)
+ 		{ echo "$as_me:12491: WARNING: _XOPEN_SOURCE feature test macro appears to be predefined" >&5
+ echo "$as_me: WARNING: _XOPEN_SOURCE feature test macro appears to be predefined" >&2;}
+ 		# CPPFLAGS="$CPPFLAGS -DNCURSES_WIDECHAR"
+@@ -13095,7 +13095,7 @@
+ 	for cf_header_path in $CPPFLAGS $CFLAGS
+ 	do
+ 		case "$cf_header_path" in
+-		(-I*)
++	-I*)
+ 			cf_header_path=`echo ".$cf_header_path" |sed -e 's/^...//' -e 's,/include$,,'`
+ 
+ test "x$cf_header_path" != "xNONE" && \
+@@ -13239,7 +13239,7 @@
+ 	for cf_library_path in $LDFLAGS $LIBS
+ 	do
+ 		case "$cf_library_path" in
+-		(-L*)
++		-L*)
+ 			cf_library_path=`echo ".$cf_library_path" |sed -e 's/^...//' -e 's,/lib$,,'`
+ 
+ test "x$cf_library_path" != "xNONE" && \
+@@ -14472,24 +14472,24 @@
+ fi
+ 
+ case ".$cf_path" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval cf_path="$cf_path"
+ 	case ".$cf_path" in
+-	(.NONE/*)
++	.NONE/*)
+ 		cf_path=`echo "$cf_path" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	cf_path=`echo "$cf_path" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:14493: error: expected a pathname, not \"$cf_path\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$cf_path\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14526,7 +14526,7 @@
+ echo "$as_me:14526: result: $NCURSES_BOOL" >&5
+ echo "${ECHO_T}$NCURSES_BOOL" >&6
+ case x$NCURSES_BOOL in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	{ { echo "$as_me:14530: error: expected a type name for bool" >&5
+ echo "$as_me: error: expected a type name for bool" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14567,7 +14567,7 @@
+ echo "$as_me:14567: result: $NCURSES_CHTYPE" >&5
+ echo "${ECHO_T}$NCURSES_CHTYPE" >&6
+ case x$NCURSES_CHTYPE in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	{ { echo "$as_me:14571: error: expected a type name for chtype" >&5
+ echo "$as_me: error: expected a type name for chtype" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14589,7 +14589,7 @@
+ echo "$as_me:14589: result: $NCURSES_OSPEED" >&5
+ echo "${ECHO_T}$NCURSES_OSPEED" >&6
+ case x$NCURSES_OSPEED in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	{ { echo "$as_me:14593: error: expected a type name for ospeed" >&5
+ echo "$as_me: error: expected a type name for ospeed" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14611,7 +14611,7 @@
+ echo "$as_me:14611: result: $NCURSES_MMASK_T" >&5
+ echo "${ECHO_T}$NCURSES_MMASK_T" >&6
+ case x$NCURSES_MMASK_T in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	{ { echo "$as_me:14615: error: expected a type name for mmask-t" >&5
+ echo "$as_me: error: expected a type name for mmask-t" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14903,7 +14903,7 @@
+ echo "$as_me:14903: result: $NCURSES_TPARM_ARG" >&5
+ echo "${ECHO_T}$NCURSES_TPARM_ARG" >&6
+ case x$NCURSES_TPARM_ARG in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	{ { echo "$as_me:14907: error: expected a type name for tparm-arg" >&5
+ echo "$as_me: error: expected a type name for tparm-arg" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -14947,7 +14947,7 @@
+ cf_unknown=
+ 
+ case "$MANPAGE_FORMAT" in
+-(unknown)
++unknown)
+ 	if test -z "$MANPATH" ; then
+ 		MANPATH="/usr/man:/usr/share/man"
+ 	fi
+@@ -14967,19 +14967,19 @@
+ 			if test "x$cf_test" = "x$cf_name" ; then
+ 
+ 				case "$cf_name" in
+-				(*.bz2) MANPAGE_FORMAT="$MANPAGE_FORMAT bzip2";;
+-				(*.xz)  MANPAGE_FORMAT="$MANPAGE_FORMAT xz";;
+-				(*.gz)  MANPAGE_FORMAT="$MANPAGE_FORMAT gzip";;
+-				(*.Z)   MANPAGE_FORMAT="$MANPAGE_FORMAT compress";;
+-				(*.0)   MANPAGE_FORMAT="$MANPAGE_FORMAT BSDI";;
+-				(*)     MANPAGE_FORMAT="$MANPAGE_FORMAT normal";;
++				*.bz2) MANPAGE_FORMAT="$MANPAGE_FORMAT bzip2";;
++				*.xz)  MANPAGE_FORMAT="$MANPAGE_FORMAT xz";;
++				*.gz)  MANPAGE_FORMAT="$MANPAGE_FORMAT gzip";;
++				*.Z)   MANPAGE_FORMAT="$MANPAGE_FORMAT compress";;
++				*.0)   MANPAGE_FORMAT="$MANPAGE_FORMAT BSDI";;
++				*)     MANPAGE_FORMAT="$MANPAGE_FORMAT normal";;
+ 				esac
+ 
+ 				case "$cf_name" in
+-				($cf_dir/man*)
++				$cf_dir/man*)
+ 					cf_catonly=no
+ 					;;
+-				($cf_dir/cat*)
++				$cf_dir/cat*)
+ 					cf_preform=yes
+ 					;;
+ 				esac
+@@ -14992,7 +14992,7 @@
+ 				test "$cf_preform" = yes && MANPAGE_FORMAT="$MANPAGE_FORMAT formatted"
+ 				test "$cf_catonly" = yes && MANPAGE_FORMAT="$MANPAGE_FORMAT catonly"
+ 				case "$cf_name" in
+-				($cf_dir/cat*)
++				$cf_dir/cat*)
+ 					cf_found=yes
+ 					;;
+ 				esac
+@@ -15008,12 +15008,12 @@
+ 	test -z "$MANPAGE_FORMAT" && MANPAGE_FORMAT=normal
+ 	IFS="$ac_save_ifs"
+ 	;;
+-(*)
++*)
+ 	for cf_option in $MANPAGE_FORMAT; do
+ 	case "$cf_option" in
+-	(xz|bzip2|gzip|compress|BSDI|normal|formatted|catonly)
++	xz|bzip2|gzip|compress|BSDI|normal|formatted|catonly)
+ 		;;
+-	(*)
++	*)
+ 		cf_unknown="$cf_unknown $cf_option"
+ 		;;
+ 	esac
+@@ -15037,28 +15037,28 @@
+ for cf_item in $MANPAGE_FORMAT
+ do
+ case "$cf_item" in
+-(catonly)
++catonly)
+ 	cf_manpage_format=yes
+ 	cf_manpage_inboth=no
+ 	;;
+-(formatted)
++formatted)
+ 	cf_manpage_format=yes
+ 	cf_manpage_inboth=yes
+ 	;;
+-(compress)
++compress)
+ 	cf_manpage_so_strip="Z"
+ 	cf_manpage_compress=compress
+ 	;;
+-(gzip)
++gzip)
+ 	cf_manpage_so_strip="gz"
+ 	cf_manpage_compress=gzip
+ 	cf_manpage_coptions=-n
+ 	;;
+-(bzip2)
++bzip2)
+ 	cf_manpage_so_strip="bz2"
+ 	cf_manpage_compress=bzip2
+ 	;;
+-(xz)
++xz)
+ 	cf_manpage_so_strip="xz"
+ 	cf_manpage_compress=xz
+ 	;;
+@@ -15077,9 +15077,9 @@
+ fi;
+ 
+ case ".$MANPAGE_RENAMES" in
+-(.no)
++.no)
+ 	;;
+-(.|.yes)
++.|.yes)
+ 	# Debian 'man' program?
+ 	if test -f /etc/debian_version ; then
+ 		MANPAGE_RENAMES=man/man_db.renames
+@@ -15117,10 +15117,10 @@
+ echo "${ECHO_T}$MANPAGE_ALIASES" >&6
+ 
+ case "x$LN_S" in
+-(xln*)
++xln*)
+ 	cf_use_symlinks=yes
+ 	;;
+-(*)
++*)
+ 	cf_use_symlinks=no
+ 	;;
+ esac
+@@ -15230,8 +15230,8 @@
+ # process the list of source-files
+ for i in "\$@" ; do
+ case \$i in
+-(*.orig|*.rej) ;;
+-(*.[0-9]*)
++*.orig|*.rej) ;;
++*.[0-9]*)
+ 	section=\`expr "\$i" : '.*\\.\\([0-9]\\)[xm]*'\`;
+ 	if test "\$verb" = installing ; then
+ 	if test ! -d "\$cf_subdir\${section}" ; then
+@@ -15360,7 +15360,7 @@
+ fi
+ 
+ case "$MANPAGE_FORMAT" in
+-(*BSDI*)
++*BSDI*)
+ cat >>$cf_edit_man <<CF_EOF
+ 	if test "\$form" = format ; then
+ 		# BSDI installs only .0 suffixes in the cat directories
+@@ -15375,7 +15375,7 @@
+ 	extra_suffix=
+ 	if test -n "$EXTRA_SUFFIX" ; then
+ 		case \$cf_target in
+-		(*${EXTRA_SUFFIX}\$suffix)
++		*${EXTRA_SUFFIX}\$suffix)
+ 			extra_suffix="$EXTRA_SUFFIX"
+ 			;;
+ 		esac
+@@ -15406,12 +15406,12 @@
+ 						echo ".. \$verb alias \$cf_alias\${suffix}"
+ CF_EOF
+ case "x$LN_S" in
+-(*-f)
++*-f)
+ cat >>$cf_edit_man <<CF_EOF
+ 						$LN_S "\$cf_target" "\$cf_alias\${suffix}"
+ CF_EOF
+ 	;;
+-(*)
++*)
+ cat >>$cf_edit_man <<CF_EOF
+ 						rm -f "\$cf_alias\${suffix}"
+ 						$LN_S "\$cf_target" "\$cf_alias\${suffix}"
+@@ -15645,7 +15645,7 @@
+ 
+ if test "${with_abi_version+set}" != set; then
+ 	case "$cf_cv_rel_version" in
+-	(5.*)
++	5.*)
+ 		cf_cv_rel_version=6.0
+ 		cf_cv_abi_version=6
+ 		cf_cv_abi_default=6
+@@ -15693,7 +15693,7 @@
+ 
+ if test "${with_abi_version+set}" != set; then
+ 	case "$cf_cv_rel_version" in
+-	(5.*)
++	5.*)
+ 		cf_cv_rel_version=6.0
+ 		cf_cv_abi_version=6
+ 		cf_cv_abi_default=6
+@@ -16228,13 +16228,13 @@
+ 		# except cygwin, where we only do that if ALSO
+ 		# compiling with full thread support.
+ 		case "$host" in
+-		(*cygwin* | *msys*)
++		*cygwin* | *msys*)
+ 			if test "$with_pthread" = "yes" ; then
+ 				if test "x$disable_lib_suffixes" = "xno" ; then
+ 					LIB_SUFFIX="t${LIB_SUFFIX}"
+ 				fi
+ 			fi ;;
+-		(*)
++		*)
+ 			if test "x$disable_lib_suffixes" = "xno" ; then
+ 				LIB_SUFFIX="t${LIB_SUFFIX}"
+ 			fi
+@@ -16248,7 +16248,7 @@
+ 
+ if test "${with_abi_version+set}" != set; then
+ 	case "$cf_cv_rel_version" in
+-	(5.*)
++	5.*)
+ 		cf_cv_rel_version=6.0
+ 		cf_cv_abi_version=6
+ 		cf_cv_abi_default=6
+@@ -16586,11 +16586,11 @@
+ for cf_add_cflags in -fvisibility=hidden
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -16613,11 +16613,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -16633,7 +16633,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -16641,7 +16641,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -16750,11 +16750,11 @@
+ for cf_add_cflags in -fvisibility=hidden
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -16777,11 +16777,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -16797,7 +16797,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -16805,7 +16805,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -16931,7 +16931,7 @@
+ fi
+ 
+ case "$cf_cv_system_name" in
+-(*mingw32*|*mingw64*|*-msvc*)
++*mingw32*|*mingw64*|*-msvc*)
+ 	echo "$as_me:16935: checking if you want experimental-Windows driver" >&5
+ echo $ECHO_N "checking if you want experimental-Windows driver... $ECHO_C" >&6
+ 
+@@ -16958,7 +16958,7 @@
+ 		EXP_WIN32_DRIVER=0
+ 	fi
+ 	;;
+-(*)
++*)
+ 	EXP_WIN32_DRIVER=0
+ 	INTERNALS_HDR=
+ 	;;
+@@ -17080,10 +17080,10 @@
+ echo "$as_me:17080: checking if install needs to be told about ownership" >&5
+ echo $ECHO_N "checking if install needs to be told about ownership... $ECHO_C" >&6
+ case `$ac_config_guess` in
+-(*minix)
++*minix)
+ 	with_install_o=yes
+ 	;;
+-(*)
++*)
+ 	with_install_o=no
+ 	;;
+ esac
+@@ -17137,12 +17137,12 @@
+ 		echo "$as_me:17137: result: $check_install_strip" >&5
+ echo "${ECHO_T}$check_install_strip" >&6
+ 		case "$check_install_strip" in
+-		(no)
++		no)
+ 			{ echo "$as_me:17141: WARNING: $cf_install_program does not support strip program option" >&5
+ echo "$as_me: WARNING: $cf_install_program does not support strip program option" >&2;}
+ 			with_strip_program=no
+ 			;;
+-		(environ)
++		environ)
+ 			cat >install.tmp <<-CF_EOF
+ 			#! $SHELL
+ 			STRIPBIN="$with_strip_program" \\
+@@ -17156,7 +17156,7 @@
+ echo "${as_me:-configure}:17156: testing created $INSTALL ..." 1>&5
+ 
+ 			;;
+-		(option)
++		option)
+ 			INSTALL_OPT_S="$INSTALL_OPT_S --strip-program=\"$with_strip_program\""
+ 			;;
+ 		esac
+@@ -17269,24 +17269,24 @@
+ if test "$GCC" = yes || test "$GXX" = yes
+ then
+ 	case $CFLAGS in
+-	(*-Werror=*)
++	*-Werror=*)
+ 		cf_temp_flags=
+ 		for cf_temp_scan in $CFLAGS
+ 		do
+ 			case "x$cf_temp_scan" in
+-			(x-Werror=format*)
++			x-Werror=format*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+ 
+ 				;;
+-			(x-Werror=*)
++			x-Werror=*)
+ 
+ 	test -n "$EXTRA_CFLAGS" && EXTRA_CFLAGS="$EXTRA_CFLAGS "
+ 	EXTRA_CFLAGS="${EXTRA_CFLAGS}$cf_temp_scan"
+ 
+ 				;;
+-			(*)
++			*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+@@ -17317,24 +17317,24 @@
+ if test "$GCC" = yes || test "$GXX" = yes
+ then
+ 	case $CPPFLAGS in
+-	(*-Werror=*)
++	*-Werror=*)
+ 		cf_temp_flags=
+ 		for cf_temp_scan in $CPPFLAGS
+ 		do
+ 			case "x$cf_temp_scan" in
+-			(x-Werror=format*)
++			x-Werror=format*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+ 
+ 				;;
+-			(x-Werror=*)
++			x-Werror=*)
+ 
+ 	test -n "$EXTRA_CFLAGS" && EXTRA_CFLAGS="$EXTRA_CFLAGS "
+ 	EXTRA_CFLAGS="${EXTRA_CFLAGS}$cf_temp_scan"
+ 
+ 				;;
+-			(*)
++			*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+@@ -17365,24 +17365,24 @@
+ if test "$GCC" = yes || test "$GXX" = yes
+ then
+ 	case $LDFLAGS in
+-	(*-Werror=*)
++	*-Werror=*)
+ 		cf_temp_flags=
+ 		for cf_temp_scan in $LDFLAGS
+ 		do
+ 			case "x$cf_temp_scan" in
+-			(x-Werror=format*)
++			x-Werror=format*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+ 
+ 				;;
+-			(x-Werror=*)
++			x-Werror=*)
+ 
+ 	test -n "$EXTRA_CFLAGS" && EXTRA_CFLAGS="$EXTRA_CFLAGS "
+ 	EXTRA_CFLAGS="${EXTRA_CFLAGS}$cf_temp_scan"
+ 
+ 				;;
+-			(*)
++			*)
+ 
+ 	test -n "$cf_temp_flags" && cf_temp_flags="$cf_temp_flags "
+ 	cf_temp_flags="${cf_temp_flags}$cf_temp_scan"
+@@ -17535,13 +17535,13 @@
+ CPPFLAGS="$cf_save_CPPFLAGS_CF_CONST_X_STRING"
+ 
+ case "$cf_cv_const_x_string" in
+-(no)
++no)
+ 
+ 	test -n "$CPPFLAGS" && CPPFLAGS="$CPPFLAGS "
+ 	CPPFLAGS="${CPPFLAGS}-DXTSTRINGDEFINES"
+ 
+ 	;;
+-(*)
++*)
+ 
+ 	test -n "$CPPFLAGS" && CPPFLAGS="$CPPFLAGS "
+ 	CPPFLAGS="${CPPFLAGS}-D_CONST_X_STRING"
+@@ -17632,9 +17632,9 @@
+ 			test -n "$verbose" && echo "$as_me:17632: result: ... -$cf_opt" >&5
+ echo "${ECHO_T}... -$cf_opt" >&6
+ 			case "$cf_opt" in
+-			(Winline)
++			Winline)
+ 				case "$GCC_VERSION" in
+-				([34].*)
++				[34].*)
+ 					test -n "$verbose" && echo "	feature is broken in gcc $GCC_VERSION" 1>&6
+ 
+ echo "${as_me:-configure}:17640: testing feature is broken in gcc $GCC_VERSION ..." 1>&5
+@@ -17642,9 +17642,9 @@
+ 					continue;;
+ 				esac
+ 				;;
+-			(Wpointer-arith)
++			Wpointer-arith)
+ 				case "$GCC_VERSION" in
+-				([12].*)
++				[12].*)
+ 					test -n "$verbose" && echo "	feature is broken in gcc $GCC_VERSION" 1>&6
+ 
+ echo "${as_me:-configure}:17650: testing feature is broken in gcc $GCC_VERSION ..." 1>&5
+@@ -17714,19 +17714,19 @@
+ 		echo "checking for $CC $cf_directive" 1>&5
+ 
+ 		case "$cf_attribute" in
+-		(printf)
++		printf)
+ 			cf_printf_attribute=yes
+ 			cat >conftest.h <<EOF
+ #define GCC_$cf_ATTRIBUTE 1
+ EOF
+ 			;;
+-		(scanf)
++		scanf)
+ 			cf_scanf_attribute=yes
+ 			cat >conftest.h <<EOF
+ #define GCC_$cf_ATTRIBUTE 1
+ EOF
+ 			;;
+-		(*)
++		*)
+ 			cat >conftest.h <<EOF
+ #define GCC_$cf_ATTRIBUTE $cf_directive
+ EOF
+@@ -17742,7 +17742,7 @@
+ echo "${ECHO_T}... $cf_attribute" >&6
+ 			cat conftest.h >>confdefs.h
+ 			case "$cf_attribute" in
+-			(noreturn)
++			noreturn)
+ 
+ cat >>confdefs.h <<EOF
+ #define GCC_NORETURN $cf_directive
+@@ -17749,7 +17749,7 @@
+ EOF
+ 
+ 				;;
+-			(printf)
++			printf)
+ 				cf_value='/* nothing */'
+ 				if test "$cf_printf_attribute" != no ; then
+ 					cf_value='__attribute__((format(printf,fmt,var)))'
+@@ -17765,7 +17765,7 @@
+ EOF
+ 
+ 				;;
+-			(scanf)
++			scanf)
+ 				cf_value='/* nothing */'
+ 				if test "$cf_scanf_attribute" != no ; then
+ 					cf_value='__attribute__((format(scanf,fmt,var)))'
+@@ -17781,7 +17781,7 @@
+ EOF
+ 
+ 				;;
+-			(unused)
++			unused)
+ 
+ cat >>confdefs.h <<EOF
+ #define GCC_UNUSED $cf_directive
+@@ -17809,7 +17809,7 @@
+ 
+ if test "$GCC" = yes ; then
+ 	case "$host_os" in
+-	(linux*|gnu*)
++	linux*|gnu*)
+ 		echo "$as_me:17813: checking if this is really Intel C++ compiler" >&5
+ echo $ECHO_N "checking if this is really Intel C++ compiler... $ECHO_C" >&6
+ 		cf_save_CFLAGS="$CXXFLAGS"
+@@ -17909,7 +17909,7 @@
+ 
+ if test "x$CLANG_CPLUSPLUS" = "xyes" ; then
+ 	case "$CC" in
+-	(c[1-9][0-9]|*/c[1-9][0-9])
++	c[1-9][0-9]|*/c[1-9][0-9])
+ 		{ echo "$as_me:17913: WARNING: replacing broken compiler alias $CC" >&5
+ echo "$as_me: WARNING: replacing broken compiler alias $CC" >&2;}
+ 		CFLAGS="$CFLAGS -std=`echo "$CC" | sed -e 's%.*/%%'`"
+@@ -18046,9 +18046,9 @@
+ 	cf_gxx_extra_warnings=""
+ 	test "$with_ext_const" = yes && cf_gxx_extra_warnings="Wwrite-strings"
+ 	case "$GXX_VERSION" in
+-	([1-2].*)
++	[1-2].*)
+ 		;;
+-	(*)
++	*)
+ 		cf_gxx_extra_warnings="$cf_gxx_extra_warnings Weffc++"
+ 		;;
+ 	esac
+@@ -18411,8 +18411,8 @@
+ if test "${with_dmalloc+set}" = set; then
+   withval="$with_dmalloc"
+   case "x$withval" in
+-	(x|xno) ;;
+-	(*)
++	x|xno) ;;
++	*)
+ 		: "${with_cflags:=-g}"
+ 		: "${enable_leaks:=no}"
+ 		with_dmalloc=yes
+@@ -18430,11 +18430,11 @@
+ echo "${ECHO_T}${with_dmalloc:-no}" >&6
+ 
+ case ".$with_cflags" in
+-(.*-g*)
++.*-g*)
+ 	case .$CFLAGS in
+-	(.*-g*)
++	.*-g*)
+ 		;;
+-	(*)
++	*)
+ 
+ cf_fix_cppflags=no
+ cf_new_cflags=
+@@ -18444,11 +18444,11 @@
+ for cf_add_cflags in -g
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -18471,11 +18471,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -18491,7 +18491,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -18499,7 +18499,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -18648,8 +18648,8 @@
+ if test "${with_dbmalloc+set}" = set; then
+   withval="$with_dbmalloc"
+   case "x$withval" in
+-	(x|xno) ;;
+-	(*)
++	x|xno) ;;
++	*)
+ 		: "${with_cflags:=-g}"
+ 		: "${enable_leaks:=no}"
+ 		with_dbmalloc=yes
+@@ -18667,11 +18667,11 @@
+ echo "${ECHO_T}${with_dbmalloc:-no}" >&6
+ 
+ case ".$with_cflags" in
+-(.*-g*)
++.*-g*)
+ 	case .$CFLAGS in
+-	(.*-g*)
++	.*-g*)
+ 		;;
+-	(*)
++	*)
+ 
+ cf_fix_cppflags=no
+ cf_new_cflags=
+@@ -18681,11 +18681,11 @@
+ for cf_add_cflags in -g
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -18708,11 +18708,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -18728,7 +18728,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -18736,7 +18736,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -18885,8 +18885,8 @@
+ if test "${with_valgrind+set}" = set; then
+   withval="$with_valgrind"
+   case "x$withval" in
+-	(x|xno) ;;
+-	(*)
++	x|xno) ;;
++	*)
+ 		: "${with_cflags:=-g}"
+ 		: "${enable_leaks:=no}"
+ 		with_valgrind=yes
+@@ -18904,11 +18904,11 @@
+ echo "${ECHO_T}${with_valgrind:-no}" >&6
+ 
+ case ".$with_cflags" in
+-(.*-g*)
++.*-g*)
+ 	case .$CFLAGS in
+-	(.*-g*)
++	.*-g*)
+ 		;;
+-	(*)
++	*)
+ 
+ cf_fix_cppflags=no
+ cf_new_cflags=
+@@ -18918,11 +18918,11 @@
+ for cf_add_cflags in -g
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -18945,11 +18945,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -18965,7 +18965,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -18973,7 +18973,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -19071,7 +19071,7 @@
+ # extended to all models of the ncurses library:
+ cf_all_traces=no
+ case "$CFLAGS $CPPFLAGS" in
+-(*-DTRACE*)
++*-DTRACE*)
+ 	cf_all_traces=yes
+ 	;;
+ esac
+@@ -19101,11 +19101,11 @@
+ for cf_add_cflags in -DTRACE
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -19128,11 +19128,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -19148,7 +19148,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -19156,7 +19156,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -19222,7 +19222,7 @@
+ 
+ ###	Checks for libraries.
+ case "$cf_cv_system_name" in
+-(*mingw32*|*mingw64*)
++*mingw32*|*mingw64*)
+ 	# Note: WINVER may be a problem with Windows 10
+ 	if test "x$with_exp_win32" = xyes ; then
+ 		CPPFLAGS="$CPPFLAGS -DWINVER=0x0600 -DWIN32_LEAN_AND_MEAN"
+@@ -19338,7 +19338,7 @@
+ fi
+ 
+ 	;;
+-(*)
++*)
+ 	;;
+ esac
+ 
+@@ -19510,7 +19510,7 @@
+ cf_regex_func=no
+ cf_regex_libs=
+ case "$host_os" in
+-(mingw*)
++mingw*)
+ 	# -lsystre -ltre -lintl -liconv
+ 	echo "$as_me:19515: checking for regcomp in -lsystre" >&5
+ echo $ECHO_N "checking for regcomp in -lsystre... $ECHO_C" >&6
+@@ -19863,7 +19863,7 @@
+ fi
+ 
+ 	;;
+-(*)
++*)
+ 	cf_regex_libs="regex re"
+ 	echo "$as_me:19868: checking for regcomp" >&5
+ echo $ECHO_N "checking for regcomp... $ECHO_C" >&6
+@@ -20158,7 +20158,7 @@
+ 
+ cf_cv_regex_hdrs=no
+ case "$cf_regex_func" in
+-(compile)
++compile)
+ 	for cf_regex_hdr in regexp.h regexpr.h
+ 	do
+ 		cat >"conftest.$ac_ext" <<_ACEOF
+@@ -20201,7 +20201,7 @@
+ rm -f "conftest.$ac_objext" "conftest$ac_exeext" "conftest.$ac_ext"
+ 	done
+ 	;;
+-(*)
++*)
+ 	for cf_regex_hdr in regex.h
+ 	do
+ 		cat >"conftest.$ac_ext" <<_ACEOF
+@@ -20254,19 +20254,19 @@
+ echo "${ECHO_T}$cf_cv_regex_hdrs" >&6
+ 
+ case "$cf_cv_regex_hdrs" in
+-	(no)		{ echo "$as_me:20257: WARNING: no regular expression header found" >&5
++	no)		{ echo "$as_me:20257: WARNING: no regular expression header found" >&5
+ echo "$as_me: WARNING: no regular expression header found" >&2;} ;;
+-	(regex.h)
++	regex.h)
+ cat >>confdefs.h <<\EOF
+ #define HAVE_REGEX_H_FUNCS 1
+ EOF
+  ;;
+-	(regexp.h)
++	regexp.h)
+ cat >>confdefs.h <<\EOF
+ #define HAVE_REGEXP_H_FUNCS 1
+ EOF
+  ;;
+-	(regexpr.h)
++	regexpr.h)
+ cat >>confdefs.h <<\EOF
+ #define HAVE_REGEXPR_H_FUNCS 1
+ EOF
+@@ -21116,11 +21116,11 @@
+ for cf_add_cflags in --param max-inline-insns-single=1200
+ do
+ case "$cf_fix_cppflags" in
+-(no)
++no)
+ 	case "$cf_add_cflags" in
+-	(-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
++	-undef|-nostdinc*|-I*|-D*|-U*|-E|-P|-C)
+ 		case "$cf_add_cflags" in
+-		(-D*)
++		-D*)
+ 			cf_tst_cflags=`echo "${cf_add_cflags}" |sed -e 's/^-D[^=]*='\''\"[^"]*//'`
+ 
+ 			test "x${cf_add_cflags}" != "x${cf_tst_cflags}" \
+@@ -21143,11 +21143,11 @@
+ 			;;
+ 		esac
+ 		case "$CPPFLAGS" in
+-		(*$cf_add_cflags)
++		*$cf_add_cflags)
+ 			;;
+-		(*)
++		*)
+ 			case "$cf_add_cflags" in
+-			(-D*)
++			-D*)
+ 				cf_tst_cppflags=`echo "x$cf_add_cflags" | sed -e 's/^...//' -e 's/=.*//'`
+ 
+ CPPFLAGS=`echo "$CPPFLAGS" | \
+@@ -21163,7 +21163,7 @@
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 
+ 	test -n "$cf_new_cflags" && cf_new_cflags="$cf_new_cflags "
+ 	cf_new_cflags="${cf_new_cflags}$cf_add_cflags"
+@@ -21171,7 +21171,7 @@
+ 		;;
+ 	esac
+ 	;;
+-(yes)
++yes)
+ 
+ 	test -n "$cf_new_extra_cppflags" && cf_new_extra_cppflags="$cf_new_extra_cppflags "
+ 	cf_new_extra_cppflags="${cf_new_extra_cppflags}$cf_add_cflags"
+@@ -22470,9 +22470,9 @@
+ 
+ if test "$ac_cv_header_termios_h" = yes ; then
+ 	case "$CFLAGS $CPPFLAGS" in
+-	(*-D_POSIX_SOURCE*)
++	*-D_POSIX_SOURCE*)
+ 		termios_bad=dunno ;;
+-	(*)	termios_bad=maybe ;;
++	*)	termios_bad=maybe ;;
+ 	esac
+ 	if test "$termios_bad" = maybe ; then
+ 	echo "$as_me:22478: checking whether termios.h needs _POSIX_SOURCE" >&5
+@@ -22751,17 +22751,17 @@
+ echo "${ECHO_T}$cf_cv_func_vsscanf" >&6
+ 
+ case "$cf_cv_func_vsscanf" in
+-(vsscanf)
++vsscanf)
+ cat >>confdefs.h <<\EOF
+ #define HAVE_VSSCANF 1
+ EOF
+ ;;
+-(vfscanf)
++vfscanf)
+ cat >>confdefs.h <<\EOF
+ #define HAVE_VFSCANF 1
+ EOF
+ ;;
+-(_doscan)
++_doscan)
+ cat >>confdefs.h <<\EOF
+ #define HAVE__DOSCAN 1
+ EOF
+@@ -23289,7 +23289,7 @@
+ EOF
+ 
+ 	case "$cf_cv_sizechange" in
+-	(NEED*)
++	NEED*)
+ 		cat >>confdefs.h <<EOF
+ #define $cf_cv_sizechange  1
+ EOF
+@@ -23877,10 +23877,10 @@
+ fi # cf_cv_have_va_copy
+ 
+ case "${cf_cv_have_va_copy}${cf_cv_have___va_copy}${cf_cv_have___builtin_va_copy}" in
+-(*yes*)
++*yes*)
+ 	;;
+ 
+-(*)
++*)
+ 	echo "$as_me:23884: checking if we can simply copy va_list" >&5
+ echo $ECHO_N "checking if we can simply copy va_list... $ECHO_C" >&6
+ if test "${cf_cv_pointer_va_list+set}" = set; then
+@@ -24612,9 +24612,9 @@
+ EOF
+ 
+ case $with_hashed_db in
+-(yes|*able*)
++yes|*able*)
+ 	;;
+-(*)
++*)
+ 	if test -d "$with_hashed_db" ; then
+ 
+ if test -n "$with_hashed_db/include" ; then
+@@ -24728,11 +24728,11 @@
+ 
+ 	else
+ 		case "$with_hashed_db" in
+-		(./*|../*|/*)
++		./*|../*|/*)
+ 			{ echo "$as_me:24732: WARNING: no such directory $with_hashed_db" >&5
+ echo "$as_me: WARNING: no such directory $with_hashed_db" >&2;}
+ 			;;
+-		(*)
++		*)
+ 
+ cf_search=
+ 
+@@ -24772,7 +24772,7 @@
+ 	for cf_item in $cf_search
+ 	do
+ 		case "$cf_item" in
+-		(*/$with_hashed_db)
++		*/$with_hashed_db)
+ 
+ if test -n "$cf_item" ; then
+   for cf_add_incdir in $cf_item
+@@ -24898,7 +24898,7 @@
+ 	for cf_item in $cf_search
+ 	do
+ 		case "$cf_item" in
+-		(*/$with_hashed_db)
++		*/$with_hashed_db)
+ 
+ if test -n "$cf_item" ; then
+ 	for cf_add_libdir in $cf_item
+@@ -25400,7 +25400,7 @@
+ 	if test "$cf_have_libstdcpp" != yes
+ 	then
+ 		case "$cf_cv_system_name" in
+-		(os2*)
++		os2*)
+ 			if test -z "`g++ -dM -E - < /dev/null | grep __KLIBC__`"; then
+ 				cf_stdcpp_libname=stdcpp
+ 			else
+@@ -25407,7 +25407,7 @@
+ 				cf_stdcpp_libname=stdc++
+ 			fi
+ 			;;
+-		(*)
++		*)
+ 			cf_stdcpp_libname=stdc++
+ 			;;
+ 		esac
+@@ -25537,17 +25537,17 @@
+ fi
+ 
+ 	case "$GXX_VERSION" in
+-	(1.*|2.[0-6]*|[1-9][0-9].*)
++	1.*|2.[0-6]*|[1-9][0-9].*)
+ 		cf_cxx_library=yes
+ 		;;
+-	(*-2.7*|2.7*)
++	*-2.7*|2.7*)
+ 
+ cf_cxx_library=unknown
+ case "$cf_cv_system_name" in
+-(os2*)
++os2*)
+ 	cf_gpp_libname=gpp
+ 	;;
+-(*)
++*)
+ 	cf_gpp_libname=g++
+ 	;;
+ esac
+@@ -25694,7 +25694,7 @@
+ fi
+ 
+ 		;;
+-	(*)
++	*)
+ 		cf_cxx_library=no
+ 		;;
+ 	esac
+@@ -26542,11 +26542,11 @@
+ 	if test "$cross_compiling" = yes; then
+ 
+ 		case x$ac_cv_sizeof_bool in
+-		(x1) cf_cv_type_of_bool="unsigned char";;
+-		(x2) cf_cv_type_of_bool="unsigned short";;
+-		(x4) cf_cv_type_of_bool="unsigned int";;
+-		(x8) cf_cv_type_of_bool="unsigned long";;
+-		(*)  cf_cv_type_of_bool=unknown;;
++		x1) cf_cv_type_of_bool="unsigned char";;
++		x2) cf_cv_type_of_bool="unsigned short";;
++		x4) cf_cv_type_of_bool="unsigned int";;
++		x8) cf_cv_type_of_bool="unsigned long";;
++		*)  cf_cv_type_of_bool=unknown;;
+ 		esac
+ 
+ else
+@@ -26622,7 +26622,7 @@
+ 
+ if test "$cf_cv_type_of_bool" = unknown ; then
+ 	case .$NCURSES_BOOL in
+-	(.auto|.) NCURSES_BOOL=unsigned;;
++	.auto|.) NCURSES_BOOL=unsigned;;
+ 	esac
+ 	{ echo "$as_me:26627: WARNING: Assuming $NCURSES_BOOL for type of bool" >&5
+ echo "$as_me: WARNING: Assuming $NCURSES_BOOL for type of bool" >&2;}
+@@ -26939,16 +26939,16 @@
+ 	CXX_AR='$(AR)'
+ 	CXX_ARFLAGS='$(ARFLAGS)'
+ 	case "$cf_cv_system_name" in
+-	(irix*)
++	irix*)
+ 	    if test "$GXX" != yes ; then
+ 		CXX_AR='$(CXX)'
+ 		CXX_ARFLAGS='-ar -o'
+ 	    fi
+ 	    ;;
+-	(sco3.2v5*)
++	sco3.2v5*)
+ 	    CXXLDFLAGS="-u main"
+ 	    ;;
+-	(solaris2*)
++	solaris2*)
+ 	    if test "$GXX" != yes ; then
+ 		CXX_AR='$(CXX)'
+ 		CXX_ARFLAGS='-xar -o'
+@@ -27342,11 +27342,11 @@
+ 	if test "$cross_compiling" = yes; then
+ 
+ 		case x$ac_cv_sizeof_bool in
+-		(x1) cf_cv_type_of_bool="unsigned char";;
+-		(x2) cf_cv_type_of_bool="unsigned short";;
+-		(x4) cf_cv_type_of_bool="unsigned int";;
+-		(x8) cf_cv_type_of_bool="unsigned long";;
+-		(*)  cf_cv_type_of_bool=unknown;;
++		x1) cf_cv_type_of_bool="unsigned char";;
++		x2) cf_cv_type_of_bool="unsigned short";;
++		x4) cf_cv_type_of_bool="unsigned int";;
++		x8) cf_cv_type_of_bool="unsigned long";;
++		*)  cf_cv_type_of_bool=unknown;;
+ 		esac
+ 
+ else
+@@ -27422,7 +27422,7 @@
+ 
+ if test "$cf_cv_type_of_bool" = unknown ; then
+ 	case .$NCURSES_BOOL in
+-	(.auto|.) NCURSES_BOOL=unsigned;;
++	.auto|.) NCURSES_BOOL=unsigned;;
+ 	esac
+ 	{ echo "$as_me:27427: WARNING: Assuming $NCURSES_BOOL for type of bool" >&5
+ echo "$as_me: WARNING: Assuming $NCURSES_BOOL for type of bool" >&2;}
+@@ -27433,8 +27433,8 @@
+ 			echo "$as_me:27433: checking for fallback type of bool" >&5
+ echo $ECHO_N "checking for fallback type of bool... $ECHO_C" >&6
+ 			case "$host_cpu" in
+-			(i?86)	cf_cv_type_of_bool=char	;;
+-			(*)	cf_cv_type_of_bool=int	;;
++			i?86)	cf_cv_type_of_bool=char	;;
++			*)	cf_cv_type_of_bool=int	;;
+ 			esac
+ 			echo "$as_me:27439: result: $cf_cv_type_of_bool" >&5
+ echo "${ECHO_T}$cf_cv_type_of_bool" >&6
+@@ -27615,10 +27615,10 @@
+ test -z "$cf_cv_gnat_version" && cf_cv_gnat_version=no
+ 
+ case "$cf_cv_gnat_version" in
+-(3.1[1-9]*|3.[2-9]*|[4-9].*|[1-9][0-9].[0-9]*|20[0-9][0-9])
++3.1[1-9]*|3.[2-9]*|[4-9].*|[1-9][0-9].[0-9]*|20[0-9][0-9])
+ 	cf_cv_prog_gnat_correct=yes
+ 	;;
+-(*)
++*)
+ 	{ echo "$as_me:27622: WARNING: Unsupported GNAT version $cf_cv_gnat_version. We require 3.11 or better. Disabling Ada95 binding." >&5
+ echo "$as_me: WARNING: Unsupported GNAT version $cf_cv_gnat_version. We require 3.11 or better. Disabling Ada95 binding." >&2;}
+ 	cf_cv_prog_gnat_correct=no
+@@ -27707,7 +27707,7 @@
+ 	echo "$as_me:27707: checking optimization options for ADAFLAGS" >&5
+ echo $ECHO_N "checking optimization options for ADAFLAGS... $ECHO_C" >&6
+ 	case "$CFLAGS" in
+-	(*-g*)
++	*-g*)
+ 
+  	ADAFLAGS="$ADAFLAGS -g"
+ 
+@@ -27714,7 +27714,7 @@
+ 		;;
+ 	esac
+ 	case "$CFLAGS" in
+-	(*-O*)
++	*-O*)
+ 		cf_O_flag=`echo "$CFLAGS" |sed -e 's/^.*-O/-O/' -e 's/[ 	].*//'`
+ 
+  	ADAFLAGS="$ADAFLAGS $cf_O_flag"
+@@ -27741,10 +27741,10 @@
+ echo "$as_me:27741: checking if GNAT supports generics" >&5
+ echo $ECHO_N "checking if GNAT supports generics... $ECHO_C" >&6
+ case "$cf_cv_gnat_version" in
+-(3.1[1-9]*|3.[2-9]*|[4-9].*|[1-9][0-9].[0-9]*|20[0-9][0-9])
++3.1[1-9]*|3.[2-9]*|[4-9].*|[1-9][0-9].[0-9]*|20[0-9][0-9])
+ 	cf_gnat_generics=yes
+ 	;;
+-(*)
++*)
+ 	cf_gnat_generics=no
+ 	;;
+ esac
+@@ -27824,13 +27824,13 @@
+ echo "$as_me:27824: checking if GNAT supports project files" >&5
+ echo $ECHO_N "checking if GNAT supports project files... $ECHO_C" >&6
+ case "$cf_cv_gnat_version" in
+-(3.[0-9]*)
++3.[0-9]*)
+ 	;;
+-(*)
++*)
+ 	case "$cf_cv_system_name" in
+-	(cygwin*|msys*)
++	cygwin*|msys*)
+ 		;;
+-	(*)
++	*)
+ 		rm -rf ./conftest* ./*~conftest*
+ 		if mkdir conftest.src conftest.bin conftest.lib
+ 		then
+@@ -27958,24 +27958,24 @@
+ fi
+ 
+ case ".$withval" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval withval="$withval"
+ 	case ".$withval" in
+-	(.NONE/*)
++	.NONE/*)
+ 		withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:27979: error: expected a pathname, not \"$withval\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$withval\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -28006,24 +28006,24 @@
+ fi
+ 
+ case ".$withval" in
+-(.\$\(*\)*|.\'*\'*)
++.\$\(*\)*|.\'*\'*)
+ 	;;
+-(..|./*|.\\*)
++..|./*|.\\*)
+ 	;;
+-(.[a-zA-Z]:[\\/]*) # OS/2 EMX
++.[a-zA-Z]:[\\/]*) # OS/2 EMX
+ 	;;
+-(.\$\{*prefix\}*|.\$\{*dir\}*)
++.\$\{*prefix\}*|.\$\{*dir\}*)
+ 	eval withval="$withval"
+ 	case ".$withval" in
+-	(.NONE/*)
++	.NONE/*)
+ 		withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 		;;
+ 	esac
+ 	;;
+-(.no|.NONE/*)
++.no|.NONE/*)
+ 	withval=`echo "$withval" | sed -e s%NONE%$cf_path_syntax%`
+ 	;;
+-(*)
++*)
+ 	{ { echo "$as_me:28027: error: expected a pathname, not \"$withval\"" >&5
+ echo "$as_me: error: expected a pathname, not \"$withval\"" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -28090,7 +28090,7 @@
+   ADA_LIBNAME=AdaCurses
+ fi;
+ case "x$ADA_LIBNAME" in
+-(x|xyes|xno)
++x|xyes|xno)
+ 	ADA_LIBNAME=AdaCurses
+ 	;;
+ esac
+@@ -28397,7 +28397,7 @@
+ if test "$with_term_driver" != no ; then
+ 	LIB_SUBSETS="${LIB_SUBSETS}+port_drivers"
+ 	case "$cf_cv_system_name" in
+-	(*mingw32*|*mingw64*)
++	*mingw32*|*mingw64*)
+ 		if test "x$with_exp_win32" = xyes ; then
+ 			LIB_SUBSETS="${LIB_SUBSETS}+port_tinfo+port_win32"
+ 		else
+@@ -28405,16 +28405,16 @@
+ 		fi
+ 		CPPFLAGS="$CPPFLAGS -DUSE_WIN32CON_DRIVER"
+ 		;;
+-	(*)
++	*)
+ 		LIB_SUBSETS="${LIB_SUBSETS}+port_tinfo"
+ 		;;
+ 	esac
+ elif test "x$with_exp_win32" = xyes ; then
+ 	case "$cf_cv_system_name" in
+-	(*mingw32*|*mingw64*)
++	*mingw32*|*mingw64*)
+ 		LIB_SUBSETS="${LIB_SUBSETS}+port_win32"
+ 		;;
+-	(*)
++	*)
+ 		;;
+ 	esac
+ fi
+@@ -28457,11 +28457,11 @@
+ echo $ECHO_N "checking default library suffix... $ECHO_C" >&6
+ 
+ 	case $DFT_LWR_MODEL in
+-	(libtool) DFT_ARG_SUFFIX=''   ;;
+-	(normal)  DFT_ARG_SUFFIX=''   ;;
+-	(debug)   DFT_ARG_SUFFIX='_g' ;;
+-	(profile) DFT_ARG_SUFFIX='_p' ;;
+-	(shared)  DFT_ARG_SUFFIX=''   ;;
++	libtool) DFT_ARG_SUFFIX=''   ;;
++	normal)  DFT_ARG_SUFFIX=''   ;;
++	debug)   DFT_ARG_SUFFIX='_g' ;;
++	profile) DFT_ARG_SUFFIX='_p' ;;
++	shared)  DFT_ARG_SUFFIX=''   ;;
+ 	esac
+ 	test -n "$LIB_SUFFIX" && DFT_ARG_SUFFIX="${LIB_SUFFIX}${DFT_ARG_SUFFIX}"
+ echo "$as_me:28467: result: $DFT_ARG_SUFFIX" >&5
+@@ -28471,74 +28471,74 @@
+ echo $ECHO_N "checking default library-dependency suffix... $ECHO_C" >&6
+ 
+ 	case X$DFT_LWR_MODEL in
+-	(Xlibtool)
++	Xlibtool)
+ 		DFT_LIB_SUFFIX='.la'
+ 		DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 		;;
+-	(Xdebug)
++	Xdebug)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			DFT_LIB_SUFFIX='_g.lib'
+ 			;;
+-		(*)
++		*)
+ 			DFT_LIB_SUFFIX='_g.a'
+ 			;;
+ 		esac
+ 		DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 		;;
+-	(Xprofile)
++	Xprofile)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			DFT_LIB_SUFFIX='_p.lib'
+ 			;;
+-		(*)
++		*)
+ 			DFT_LIB_SUFFIX='_p.a'
+ 			;;
+ 		esac
+ 		DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 		;;
+-	(Xshared)
++	Xshared)
+ 		case "$cf_cv_system_name" in
+-		(aix[5-7]*)
++		aix[5-7]*)
+ 			DFT_LIB_SUFFIX='.so'
+ 			DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 			;;
+-		(*-msvc*)
++		*-msvc*)
+ 			DFT_LIB_SUFFIX='.dll'
+ 			DFT_DEP_SUFFIX='.dll.lib'
+ 			;;
+-		(cygwin*|msys*|mingw*)
++		cygwin*|msys*|mingw*)
+ 			DFT_LIB_SUFFIX='.dll'
+ 			DFT_DEP_SUFFIX='.dll.a'
+ 			;;
+-		(darwin*)
++		darwin*)
+ 			DFT_LIB_SUFFIX='.dylib'
+ 			DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 			;;
+-		(hpux*)
++		hpux*)
+ 			case "$target" in
+-			(ia64*)
++			ia64*)
+ 				DFT_LIB_SUFFIX='.so'
+ 				DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 				;;
+-			(*)
++			*)
+ 				DFT_LIB_SUFFIX='.sl'
+ 				DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 				;;
+ 			esac
+ 			;;
+-		(*)
++		*)
+ 			DFT_LIB_SUFFIX='.so'
+ 			DFT_DEP_SUFFIX=$DFT_LIB_SUFFIX
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 		case "$target" in
+-		(*-msvc*)
++		*-msvc*)
+ 			DFT_LIB_SUFFIX='.lib'
+ 			;;
+-		(*)
++		*)
+ 			DFT_LIB_SUFFIX='.a'
+ 			;;
+ 		esac
+@@ -28557,15 +28557,15 @@
+ echo $ECHO_N "checking default object directory... $ECHO_C" >&6
+ 
+ 	case $DFT_LWR_MODEL in
+-	(libtool) DFT_OBJ_SUBDIR='obj_lo'  ;;
+-	(normal)  DFT_OBJ_SUBDIR='objects' ;;
+-	(debug)   DFT_OBJ_SUBDIR='obj_g' ;;
+-	(profile) DFT_OBJ_SUBDIR='obj_p' ;;
+-	(shared)
++	libtool) DFT_OBJ_SUBDIR='obj_lo'  ;;
++	normal)  DFT_OBJ_SUBDIR='objects' ;;
++	debug)   DFT_OBJ_SUBDIR='obj_g' ;;
++	profile) DFT_OBJ_SUBDIR='obj_p' ;;
++	shared)
+ 		case "$cf_cv_system_name" in
+-		(cygwin|msys)
++		cygwin|msys)
+ 			DFT_OBJ_SUBDIR='objects' ;;
+-		(*)
++		*)
+ 			DFT_OBJ_SUBDIR='obj_s' ;;
+ 		esac
+ 	esac
+@@ -28585,74 +28585,74 @@
+ 	# we normally make a static library because C/C++ library rules differ
+ 
+ 	case Xnormal in
+-	(Xlibtool)
++	Xlibtool)
+ 		CXX_LIB_SUFFIX='.la'
+ 		CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 		;;
+-	(Xdebug)
++	Xdebug)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			CXX_LIB_SUFFIX='_g.lib'
+ 			;;
+-		(*)
++		*)
+ 			CXX_LIB_SUFFIX='_g.a'
+ 			;;
+ 		esac
+ 		CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 		;;
+-	(Xprofile)
++	Xprofile)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			CXX_LIB_SUFFIX='_p.lib'
+ 			;;
+-		(*)
++		*)
+ 			CXX_LIB_SUFFIX='_p.a'
+ 			;;
+ 		esac
+ 		CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 		;;
+-	(Xshared)
++	Xshared)
+ 		case "$cf_cv_system_name" in
+-		(aix[5-7]*)
++		aix[5-7]*)
+ 			CXX_LIB_SUFFIX='.so'
+ 			CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 			;;
+-		(*-msvc*)
++		*-msvc*)
+ 			CXX_LIB_SUFFIX='.dll'
+ 			CXX_DEP_SUFFIX='.dll.lib'
+ 			;;
+-		(cygwin*|msys*|mingw*)
++		cygwin*|msys*|mingw*)
+ 			CXX_LIB_SUFFIX='.dll'
+ 			CXX_DEP_SUFFIX='.dll.a'
+ 			;;
+-		(darwin*)
++		darwin*)
+ 			CXX_LIB_SUFFIX='.dylib'
+ 			CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 			;;
+-		(hpux*)
++		hpux*)
+ 			case "$target" in
+-			(ia64*)
++			ia64*)
+ 				CXX_LIB_SUFFIX='.so'
+ 				CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 				;;
+-			(*)
++			*)
+ 				CXX_LIB_SUFFIX='.sl'
+ 				CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 				;;
+ 			esac
+ 			;;
+-		(*)
++		*)
+ 			CXX_LIB_SUFFIX='.so'
+ 			CXX_DEP_SUFFIX=$CXX_LIB_SUFFIX
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 		case "$target" in
+-		(*-msvc*)
++		*-msvc*)
+ 			CXX_LIB_SUFFIX='.lib'
+ 			;;
+-		(*)
++		*)
+ 			CXX_LIB_SUFFIX='.a'
+ 			;;
+ 		esac
+@@ -28778,7 +28778,7 @@
+ 
+ if test "$DFT_LWR_MODEL" = shared ; then
+ 	case "$cf_cv_system_name" in
+-	(cygwin*|msys*)
++	cygwin*|msys*)
+ 		# "lib" files have ".dll.a" suffix, "cyg"or "msys-" files have ".dll"
+ 		TINFO_SUFFIX=.dll
+ 		;;
+@@ -28800,15 +28800,15 @@
+ TINFO_LDFLAGS2=`echo "$TINFO_LDFLAGS" | sed -e 's,-L\.\./,-L../../,'`
+ 
+ case "$DFT_LWR_MODEL" in
+-(normal|debug|profile)
++normal|debug|profile)
+ 
+ if test "$GCC" = yes ; then
+ 	case "$cf_cv_system_name" in
+-	(OS/2*|os2*|aix[4]*|solaris2.1[0-9]|darwin*)
++	OS/2*|os2*|aix[4]*|solaris2.1[0-9]|darwin*)
+ 		LDFLAGS_STATIC=
+ 		LDFLAGS_SHARED=
+ 		;;
+-	(*) 	# normally, except when broken
++	*) 	# normally, except when broken
+ 		LDFLAGS_STATIC=-static
+ 		LDFLAGS_SHARED=-dynamic
+ 		;;
+@@ -28815,25 +28815,25 @@
+ 	esac
+ else
+ 	case "$cf_cv_system_name" in
+-	(aix[4-7]*) 	# from ld manpage
++	aix[4-7]*) 	# from ld manpage
+ 		LDFLAGS_STATIC=-bstatic
+ 		LDFLAGS_SHARED=-bdynamic
+ 		;;
+-	(hpux*)		# from ld manpage for hpux10.20, hpux11.11
++	hpux*)		# from ld manpage for hpux10.20, hpux11.11
+ 		# We could also use just "archive" and "shared".
+ 		LDFLAGS_STATIC=-Wl,-a,archive_shared
+ 		LDFLAGS_SHARED=-Wl,-a,shared_archive
+ 		;;
+-	(irix*)		# from ld manpage IRIX64
++	irix*)		# from ld manpage IRIX64
+ 		LDFLAGS_STATIC=-Bstatic
+ 		LDFLAGS_SHARED=-Bdynamic
+ 		;;
+-	(osf[45]*)	# from ld manpage osf4.0d, osf5.1
++	osf[45]*)	# from ld manpage osf4.0d, osf5.1
+ 		# alternative "-oldstyle_liblookup" (not in cc manpage)
+ 		LDFLAGS_STATIC=-noso
+ 		LDFLAGS_SHARED=-so_archive
+ 		;;
+-	(solaris2*)
++	solaris2*)
+ 		LDFLAGS_STATIC=-Bstatic
+ 		LDFLAGS_SHARED=-Bdynamic
+ 		;;
+@@ -28897,10 +28897,10 @@
+ 
+ 	# some linkers simply ignore the -dynamic
+ 	case x`file "conftest$ac_exeext" 2>/dev/null` in
+-	(*static*)
++	*static*)
+ 		cf_ldflags_static=no
+ 		;;
+-	(*)
++	*)
+ 		cf_ldflags_static=yes
+ 		;;
+ 	esac
+@@ -28958,7 +28958,7 @@
+ ### At least on MinGW a shared library build without libtool
+ ### requires adding the additional libs to the link list.
+ case "$cf_cv_system_name" in
+-(*mingw32*|*mingw64*)
++*mingw32*|*mingw64*)
+ 	if test "$DFT_LWR_MODEL" != "libtool"; then
+    	   SHLIB_LIST="$SHLIB_LIST ${LIBS}"
+ 	fi
+@@ -28987,10 +28987,10 @@
+ FORM_NAME="$with_lib_basename"
+ 
+ case "x$FORM_NAME" in
+-(x|xno|xnone|xyes)
++x|xno|xnone|xyes)
+ 	FORM_NAME=form
+ 	;;
+-(*)
++*)
+ 	;;
+ esac
+ 
+@@ -29010,10 +29010,10 @@
+ MENU_NAME="$with_lib_basename"
+ 
+ case "x$MENU_NAME" in
+-(x|xno|xnone|xyes)
++x|xno|xnone|xyes)
+ 	MENU_NAME=menu
+ 	;;
+-(*)
++*)
+ 	;;
+ esac
+ 
+@@ -29033,10 +29033,10 @@
+ PANEL_NAME="$with_lib_basename"
+ 
+ case "x$PANEL_NAME" in
+-(x|xno|xnone|xyes)
++x|xno|xnone|xyes)
+ 	PANEL_NAME=panel
+ 	;;
+-(*)
++*)
+ 	;;
+ esac
+ 
+@@ -29056,10 +29056,10 @@
+ CXX_NAME="$with_lib_basename"
+ 
+ case "x$CXX_NAME" in
+-(x|xno|xnone|xyes)
++x|xno|xnone|xyes)
+ 	CXX_NAME=ncurses++
+ 	;;
+-(*)
++*)
+ 	;;
+ esac
+ 
+@@ -29190,15 +29190,15 @@
+ do
+ 
+ 	case $cf_item in
+-	(libtool) cf_subdir='obj_lo'  ;;
+-	(normal)  cf_subdir='objects' ;;
+-	(debug)   cf_subdir='obj_g' ;;
+-	(profile) cf_subdir='obj_p' ;;
+-	(shared)
++	libtool) cf_subdir='obj_lo'  ;;
++	normal)  cf_subdir='objects' ;;
++	debug)   cf_subdir='obj_g' ;;
++	profile) cf_subdir='obj_p' ;;
++	shared)
+ 		case "$cf_cv_system_name" in
+-		(cygwin|msys)
++		cygwin|msys)
+ 			cf_subdir='objects' ;;
+-		(*)
++		*)
+ 			cf_subdir='obj_s' ;;
+ 		esac
+ 	esac
+@@ -29274,10 +29274,10 @@
+ 
+ # workaround for OS/2 (20151017)
+ case "$cf_cv_system_name" in
+-(os2*)
++os2*)
+ 	LIBTOOL_OPTS_CXX="-os2dllname ncurs++"
+ 	;;
+-(*)
++*)
+ 	LIBTOOL_OPTS_CXX=
+ 	;;
+ esac
+@@ -29284,9 +29284,9 @@
+ 
+ # workaround for g++ versus Solaris (20131116)
+ case "$cf_cv_system_name" in
+-(solaris2*)
++solaris2*)
+ 	case "x$CPPFLAGS" in
+-	(*-D_XOPEN_SOURCE_EXTENDED*)
++	*-D_XOPEN_SOURCE_EXTENDED*)
+ 		test -n "$verbose" && echo "	moving _XOPEN_SOURCE_EXTENDED to work around g++ problem" 1>&6
+ 
+ echo "${as_me:-configure}:29292: testing moving _XOPEN_SOURCE_EXTENDED to work around g++ problem ..." 1>&5
+@@ -29321,10 +29321,10 @@
+ 
+ # AC_CHECK_SIZEOF demands a literal parameter, no variables.  So we do this.
+ case "x$NCURSES_OSPEED" in
+-(*short*)
++*short*)
+ 	cf_compatible=1
+ 	;;
+-(*)
++*)
+ 	cf_compatible=0
+ 	;;
+ esac
+@@ -29334,13 +29334,13 @@
+ EOF
+ 
+ case "x$cf_cv_typeof_chtype" in
+-(xshort|xint|xlong)
++xshort|xint|xlong)
+ 	cf_cv_typeof_chtype="unsigned $cf_cv_typeof_chtype"
+ 	;;
+ esac
+ 
+ case "x$cf_cv_typeof_mmask_t" in
+-(xshort|xint|xlong)
++xshort|xint|xlong)
+ 	cf_cv_typeof_mmask_t="unsigned $cf_cv_typeof_mmask_t"
+ 	;;
+ esac
+@@ -29444,14 +29444,14 @@
+ 	if test -f /usr/bin/isainfo && test "x`uname -s`" = xSunOS
+ 	then
+ 		case x`(isainfo -b)` in
+-		(x64)
++		x64)
+ 			cf_pathlist="$cf_pathlist /lib/64 /usr/lib/64"
+ 			;;
+-		(x32)
++		x32)
+ 			test -d /usr/ccs/lib && cf_pathlist="$cf_pathlist /usr/ccs/lib"
+ 			cf_pathlist="$cf_pathlist /lib /usr/lib"
+ 			;;
+-		(*)
++		*)
+ 			{ echo "$as_me:29455: WARNING: problem with Solaris architecture" >&5
+ echo "$as_me: WARNING: problem with Solaris architecture" >&2;}
+ 			;;
+@@ -29465,10 +29465,10 @@
+ 	if test x"`uname -s`" = xHP-UX
+ 	then
+ 		case x`getconf LONG_BIT` in
+-		(x64)
++		x64)
+ 			cf_pathlist="/usr/lib/hpux64"
+ 			;;
+-		(x*)
++		x*)
+ 			cf_pathlist="/usr/lib/hpux32"
+ 			;;
+ 		esac
+@@ -30740,7 +30740,7 @@
+ cf_prefix=$LIB_PREFIX
+ 
+ case "$cf_cv_shlib_version" in
+-(cygdll|msysdll|mingw|msvcdll)
++cygdll|msysdll|mingw|msvcdll)
+ 	TINFO_NAME=$TINFO_ARG_SUFFIX
+ 	TINFO_SUFFIX=.dll
+ 	;;
+@@ -30748,15 +30748,15 @@
+ 
+ if test -n "$TINFO_SUFFIX" ; then
+ 	case "$TINFO_SUFFIX" in
+-	(tw*)
++	tw*)
+ 		TINFO_NAME="${TINFO_NAME}tw${EXTRA_SUFFIX}"
+ 		TINFO_SUFFIX=`echo "$TINFO_SUFFIX" | sed 's/^tw'$EXTRA_SUFFIX'//'`
+ 		;;
+-	(t*)
++	t*)
+ 		TINFO_NAME="${TINFO_NAME}t${EXTRA_SUFFIX}"
+ 		TINFO_SUFFIX=`echo "$TINFO_SUFFIX" | sed 's/^t'$EXTRA_SUFFIX'//'`
+ 		;;
+-	(w*)
++	w*)
+ 		TINFO_NAME="${TINFO_NAME}w${EXTRA_SUFFIX}"
+ 		TINFO_SUFFIX=`echo "$TINFO_SUFFIX" | sed 's/^w'$EXTRA_SUFFIX'//'`
+ 		;;
+@@ -30808,74 +30808,74 @@
+ 		do
+ 
+ 	case X$cf_item in
+-	(Xlibtool)
++	Xlibtool)
+ 		cf_suffix='.la'
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xdebug)
++	Xdebug)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='_g.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='_g.a'
+ 			;;
+ 		esac
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xprofile)
++	Xprofile)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='_p.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='_p.a'
+ 			;;
+ 		esac
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xshared)
++	Xshared)
+ 		case "$cf_cv_system_name" in
+-		(aix[5-7]*)
++		aix[5-7]*)
+ 			cf_suffix='.so'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='.dll'
+ 			cf_depsuf='.dll.lib'
+ 			;;
+-		(cygwin*|msys*|mingw*)
++		cygwin*|msys*|mingw*)
+ 			cf_suffix='.dll'
+ 			cf_depsuf='.dll.a'
+ 			;;
+-		(darwin*)
++		darwin*)
+ 			cf_suffix='.dylib'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+-		(hpux*)
++		hpux*)
+ 			case "$target" in
+-			(ia64*)
++			ia64*)
+ 				cf_suffix='.so'
+ 				cf_depsuf=$cf_suffix
+ 				;;
+-			(*)
++			*)
+ 				cf_suffix='.sl'
+ 				cf_depsuf=$cf_suffix
+ 				;;
+ 			esac
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='.so'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 		case "$target" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='.a'
+ 			;;
+ 		esac
+@@ -30914,10 +30914,10 @@
+ 					cf_version_name=
+ 
+ 					case "$cf_cv_shlib_version" in
+-					(rel)
++					rel)
+ 						cf_version_name=REL_VERSION
+ 						;;
+-					(abi)
++					abi)
+ 						cf_version_name=ABI_VERSION
+ 						;;
+ 					esac
+@@ -30925,11 +30925,11 @@
+ 					if test -n "$cf_version_name"
+ 					then
+ 						case "$cf_cv_system_name" in
+-						(darwin*)
++						darwin*)
+ 							# "w", etc?
+ 							cf_suffix="${USE_LIB_SUFFIX}"'.${'$cf_version_name'}'"$cf_shared_suffix"
+ 							;;
+-						(*)
++						*)
+ 							cf_suffix="$cf_suffix"'.${'$cf_version_name'}'
+ 							;;
+ 						esac
+@@ -30945,23 +30945,23 @@
+ 				# use autodetected ${cf_prefix} for import lib and static lib, but
+ 				# use 'cyg' prefix for shared lib.
+ 				case "$cf_cv_shlib_version" in
+-				(cygdll)
++				cygdll)
+ 					cf_cygsuf=`echo "$cf_suffix" | sed -e 's/\.dll/\${ABI_VERSION}.dll/'`
+ 					cf_add_lib="../lib/cyg${cf_libname}${cf_cygsuf}"
+ 					;;
+-				(msysdll)
++				msysdll)
+ 					cf_cygsuf=`echo "$cf_suffix" | sed -e 's/\.dll/\${ABI_VERSION}.dll/'`
+ 					cf_add_lib="../lib/msys-${cf_libname}${cf_cygsuf}"
+ 					;;
+-				(mingw)
++				mingw)
+ 					cf_cygsuf=`echo "$cf_suffix" | sed -e 's/\.dll/\${ABI_VERSION}.dll/'`
+ 					cf_add_lib="../lib/lib${cf_libname}${cf_cygsuf}"
+ 					;;
+-				(msvcdll)
++				msvcdll)
+ 					cf_cygsuf=`echo "$cf_suffix" | sed -e 's/\.dll/\${ABI_VERSION}.dll/'`
+ 					cf_add_lib="../lib/${cf_libname}${cf_cygsuf}"
+ 					;;
+-				(*)
++				*)
+ 					cf_add_lib=
+ 					;;
+ 				esac
+@@ -30987,13 +30987,13 @@
+ 				if test "$cf_l_parts" != "$cf_r_parts" ; then
+ 					cf_add_lib=
+ 					case "$cf_l_parts" in
+-					(*termlib*)
++					*termlib*)
+ 						cf_add_lib=`echo "$cf_liblist" |sed -e s%${LIB_NAME}${USE_LIB_SUFFIX}%${TINFO_LIB_SUFFIX}%g`
+ 						;;
+-					(*ticlib*)
++					*ticlib*)
+ 						cf_add_lib=`echo "$cf_liblist" |sed -e s%${LIB_NAME}${USE_LIB_SUFFIX}%${TICS_LIB_SUFFIX}%g`
+ 						;;
+-					(*)
++					*)
+ 						break
+ 						;;
+ 					esac
+@@ -31014,9 +31014,9 @@
+ 				for cf_item in $Libs_To_Make
+ 				do
+ 					case "$cf_item" in
+-					(*.a)
++					*.a)
+ 						;;
+-					(*)
++					*)
+ 						cf_item=`echo "$cf_item" | sed -e "s,"$cf_shared_suffix",.a,"`
+ 						;;
+ 					esac
+@@ -31057,7 +31057,7 @@
+ 			CXX_MODEL=$cf_ITEM
+ 			if test "$CXX_MODEL" = SHARED; then
+ 				case "$cf_cv_shlib_version" in
+-				(cygdll|msysdll|mingw|msvcdll)
++				cygdll|msysdll|mingw|msvcdll)
+ 					test "x$with_shared_cxx" = xno && test -n "$verbose" && echo "	overriding CXX_MODEL to SHARED" 1>&6
+ 
+ echo "${as_me:-configure}:31063: testing overriding CXX_MODEL to SHARED ..." 1>&5
+@@ -31064,7 +31064,7 @@
+ 
+ 					with_shared_cxx=yes
+ 					;;
+-				(*)
++				*)
+ 					test "x$with_shared_cxx" = xno && CXX_MODEL=NORMAL
+ 					;;
+ 				esac
+@@ -31071,74 +31071,74 @@
+ 			fi
+ 
+ 	case X$cf_item in
+-	(Xlibtool)
++	Xlibtool)
+ 		cf_suffix='.la'
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xdebug)
++	Xdebug)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='_g.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='_g.a'
+ 			;;
+ 		esac
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xprofile)
++	Xprofile)
+ 		case "$cf_cv_system_name" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='_p.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='_p.a'
+ 			;;
+ 		esac
+ 		cf_depsuf=$cf_suffix
+ 		;;
+-	(Xshared)
++	Xshared)
+ 		case "$cf_cv_system_name" in
+-		(aix[5-7]*)
++		aix[5-7]*)
+ 			cf_suffix='.so'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='.dll'
+ 			cf_depsuf='.dll.lib'
+ 			;;
+-		(cygwin*|msys*|mingw*)
++		cygwin*|msys*|mingw*)
+ 			cf_suffix='.dll'
+ 			cf_depsuf='.dll.a'
+ 			;;
+-		(darwin*)
++		darwin*)
+ 			cf_suffix='.dylib'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+-		(hpux*)
++		hpux*)
+ 			case "$target" in
+-			(ia64*)
++			ia64*)
+ 				cf_suffix='.so'
+ 				cf_depsuf=$cf_suffix
+ 				;;
+-			(*)
++			*)
+ 				cf_suffix='.sl'
+ 				cf_depsuf=$cf_suffix
+ 				;;
+ 			esac
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='.so'
+ 			cf_depsuf=$cf_suffix
+ 			;;
+ 		esac
+ 		;;
+-	(*)
++	*)
+ 		case "$target" in
+-		(*-msvc*)
++		*-msvc*)
+ 			cf_suffix='.lib'
+ 			;;
+-		(*)
++		*)
+ 			cf_suffix='.a'
+ 			;;
+ 		esac
+@@ -31152,15 +31152,15 @@
+ 	fi
+ 
+ 	case $cf_item in
+-	(libtool) cf_subdir='obj_lo'  ;;
+-	(normal)  cf_subdir='objects' ;;
+-	(debug)   cf_subdir='obj_g' ;;
+-	(profile) cf_subdir='obj_p' ;;
+-	(shared)
++	libtool) cf_subdir='obj_lo'  ;;
++	normal)  cf_subdir='objects' ;;
++	debug)   cf_subdir='obj_g' ;;
++	profile) cf_subdir='obj_p' ;;
++	shared)
+ 		case "$cf_cv_system_name" in
+-		(cygwin|msys)
++		cygwin|msys)
+ 			cf_subdir='objects' ;;
+-		(*)
++		*)
+ 			cf_subdir='obj_s' ;;
+ 		esac
+ 	esac
+@@ -31169,13 +31169,13 @@
+ 			cf_libname=$cf_dir
+ 			if test "$cf_dir" = ncurses ; then
+ 				case "$cf_subset" in
+-				(*base*)
++				*base*)
+ 					cf_libname=${cf_libname}$USE_LIB_SUFFIX
+ 					;;
+-				(*termlib*)
++				*termlib*)
+ 					cf_libname=$TINFO_LIB_SUFFIX
+ 					;;
+-				(ticlib*)
++				ticlib*)
+ 					cf_libname=$TICS_LIB_SUFFIX
+ 					;;
+ 				esac
+@@ -31219,22 +31219,22 @@
+  			if test "$cf_cv_shlib_version_infix" = yes ; then
+ 			if test -n "$USE_LIB_SUFFIX" ; then
+ 				case "$USE_LIB_SUFFIX" in
+-				(tw*)
++				tw*)
+ 					cf_libname=`echo "$cf_libname" | sed 's/tw'$EXTRA_SUFFIX'$//'`
+ 					cf_suffix=`echo "$cf_suffix" | sed 's/^tw'$EXTRA_SUFFIX'//'`
+ 					cf_dir_suffix=tw$EXTRA_SUFFIX
+ 					;;
+-				(t*)
++				t*)
+ 					cf_libname=`echo "$cf_libname" | sed 's/t'$EXTRA_SUFFIX'$//'`
+ 					cf_suffix=`echo "$cf_suffix" | sed 's/^t'$EXTRA_SUFFIX'//'`
+ 					cf_dir_suffix=t$EXTRA_SUFFIX
+ 					;;
+-				(w*)
++				w*)
+ 					cf_libname=`echo "$cf_libname" | sed 's/w'$EXTRA_SUFFIX'$//'`
+ 					cf_suffix=`echo "$cf_suffix" | sed 's/^w'$EXTRA_SUFFIX'//'`
+ 					cf_dir_suffix=w$EXTRA_SUFFIX
+ 					;;
+-				(*)
++				*)
+ 					cf_libname=`echo "$cf_libname" | sed 's/'$EXTRA_SUFFIX'$//'`
+ 					cf_suffix=`echo "$cf_suffix" | sed 's/^'$EXTRA_SUFFIX'//'`
+ 					cf_dir_suffix=$EXTRA_SUFFIX
+@@ -31321,7 +31321,7 @@
+ 
+ 	if test -f "$cf_dir/Makefile" ; then
+ 		case "$cf_dir" in
+-		(Ada95)
++		Ada95)
+ 			echo 'libs \' >> Makefile
+ 			echo 'install.libs \' >> Makefile
+ 			echo 'uninstall.libs ::' >> Makefile
+@@ -31446,7 +31446,7 @@
+ if test "$WITH_CURSES_H" = yes; then
+ 	cat >>headers.sh <<CF_EOF
+ case \$DST in
+-(/*/include/*)
++/*/include/*)
+ 	END=\`basename \$DST\`
+ 	for i in \`cat \$REF/../*/headers |${FGREP-fgrep} -v "#"\`
+ 	do
+@@ -31454,7 +31454,7 @@
+ 		echo "s/<\$NAME>/<\$END\/\$NAME>/" >> \$TMPSED
+ 	done
+ 	;;
+-(*)
++*)
+ 	echo "" >> \$TMPSED
+ 	;;
+ esac
+@@ -31463,7 +31463,7 @@
+ else
+ 	cat >>headers.sh <<CF_EOF
+ case \$DST in
+-(/*/include/*)
++/*/include/*)
+ 	END=\`basename \$DST\`
+ 	for i in \`cat \$REF/../*/headers |${FGREP-fgrep} -v "#"\`
+ 	do
+@@ -31476,7 +31476,7 @@
+ 		echo "s/<\$NAME>/<\$END\/\$NAME>/" >> \$TMPSED
+ 	done
+ 	;;
+-(*)
++*)
+ 	echo "s/<curses.h>/<ncurses.h>/" >> \$TMPSED
+ 	;;
+ esac

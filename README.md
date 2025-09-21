@@ -17,7 +17,7 @@ How it works
 
 Package compilation is based around a reasonably simple POSIX `sh`
 script (NOT a `bash` script, so many things you may be used to just
-aren't there!). The script contains two main sections.
+aren't there!) called `PKGCONF`. The script contains two main sections.
 
 1. Declarations and Definitions
 
