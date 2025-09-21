@@ -1,0 +1,24 @@
+PACKAGE=ncurses
+VERSION=6.5
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=${SITE_GNU}/${PACKAGE}/${SRC}
+CATEGORY=libs
+DEPENDS=shell/bash
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	bash ./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
