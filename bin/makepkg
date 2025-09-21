@@ -20,6 +20,7 @@ OS="${OSNAME}-${OSVER}"
 OPT_INSTALL=0
 OPT_RECURSE=0
 OPT_FORCE=0
+OPT_CLEAN=0
 
 
 
@@ -36,13 +37,14 @@ hook() {
 
 
 
-set -- `getopt ifs $*`
+set -- `getopt icfs $*`
 for i in $*
 do
 	case $i in
 	-f) OPT_FORCE=1; shift;;
 	-i) OPT_INSTALL=1; shift;;
 	-s) OPT_RECURSE=1; shift;;
+	-c) OPT_CLEAN=1; shift;;
 	--) shift; break;;
 	esac
 done
@@ -57,7 +59,7 @@ fi
 
 if [ -z "$URL" ]; then
 	echo "URL missing from PKGCONF."
-	exit 10
+	exit 11
 fi
 
 HERE=`pwd`
@@ -98,7 +100,12 @@ download() {
 			git clone --depth 1 --branch "$T" https:$H "${SRCDIR}/${PACKAGE}-${VERSION}"
 			hook git_clone_post
 			;;
+		*)
+			echo "Unknown dowload protocol: ${URL_PROTO}"
+			return 15
+			;;
 	esac
+	return 0
 
 }
 
@@ -165,7 +172,13 @@ package() {
 runonce() {
 	FUNC=$1
 	if [ ! -f "${HERE}/.${FUNC}" ]; then
-		$1 "$2" "$3" "$4" "$5" "$6" || exit 10
+		echo "*** STAGE: ${FUNC}"
+		if $1 "$2" "$3" "$4" "$5" "$6" ; then
+			printf ""
+		else
+			echo "Failed $!"
+			exit 12
+		fi
 	fi
 	touch "${HERE}/.${FUNC}"
 }
@@ -196,7 +209,7 @@ checkdepend() {
 			fi
 		done
 		if [ "$FAIL" = "1" ]; then
-			exit 10
+			exit 13
 		fi
 	fi
 }
@@ -212,12 +225,17 @@ patchsrc() {
 }
 	
 
-checkdepend
 
 if [ "${OPT_FORCE}" = "1" ]; then
 	cleanup
 fi
 
+if [ "${OPT_CLEAN}" = "1" ]; then
+	cleanup
+	exit 0
+fi
+
+checkdepend
 
 
 mkdir -p "${DISTFILES}"
