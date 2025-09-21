@@ -41,6 +41,29 @@ These do the actual work of compiling the sofware. Three are essential:
   * build() - Compile the source
   * install() - Install it to `${DESTDIR}`
 
+Extra Files
+-----------
+
+As well as the PKGCONF file describing the package, there are a number
+of optional extra files that can be included with a package.
+
+* Patch files - These should be placed in the `patches` directory
+within the package, and should be named with a `.patch` extension. They
+should be "unified" patch files (created with `diff -u`), and will be
+applied to the source code after extraction and before configuration.
+
+~~* Script files - (not implemented yet). These should be placed in the
+`scripts` directory, and referenced in the `PKGCONF` file using the
+variables:
+
+  * `PREINSTALL=...`
+  * `POSTINSTALL=...`
+  * `CHECKINSTALL=...`
+
+They will be included in the final package as the relevant script file
+entries.~~
+
+
 Compiling a Package
 -------------------
 
