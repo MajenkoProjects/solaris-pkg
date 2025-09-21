@@ -2,7 +2,7 @@ VERSION=1.18
 PACKAGE=automake
 SRC=${PACKAGE}-${VERSION}.tar.gz
 URL=${SITE_GNU}/${PACKAGE}/${SRC}
-DEPENDS=m4
+DEPENDS=devel/m4
 CATEGORY=devel
 
 configure() {
