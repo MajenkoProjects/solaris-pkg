@@ -3,12 +3,17 @@ VERSION=0.26
 SRC=${PACKAGE}-${VERSION}.tar.gz
 URL=${SITE_GNU}/${PACKAGE}/${SRC}
 CATEGORY=libs
-DEPENDS="libs/libiconv"
+DEPENDS="libs/libiconv textproc/texinfo"
 
 configure() {
 	echo "Configuring $PACKAGE"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
 	./configure
+
+	sed -i 's@LTLIBICONV = -L/usr/local/lib -liconv -R/usr/local/lib@LTLIBICONV = -liconv -R/usr/local/lib@' "${SRCDIR}/${PACKAGE}-${VERSION}/gettext-tools/gnulib-lib/Makefile"
+
+	cp "${HERE}/files/gettext-tools-src-Makefile" "${SRCDIR}/${PACKAGE}-${VERSION}/gettext-tools/src/Makefile"
+
 }
 
 build() {
