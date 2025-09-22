@@ -22,7 +22,10 @@ configure() {
 	    --includedir=/usr/local/include \
 	    --mandir=/usr/local/share/man \
 	    --enable-cloog-backend=isl \
-	    --enable-languages=c,c++,fortran,go,objc \
+	    --without-isl \
+	    --disable-libsanitizer \
+	    --disable-bootstrap \
+	    --enable-languages=c,c++,fortran,objc \
 	    --enable-libssp \
 	    --enable-nls \
 	    --enable-objc-gc \

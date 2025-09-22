@@ -26,4 +26,7 @@ install() {
 	echo "Installing $PACKAGE to ${DESTDIR}"
 	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
 	make install DESTDIR="${DESTDIR}"
+
+	cd "${DESTDIR}/usr/local/bin"
+	ln -s msgfmt gmsgfmt
 }

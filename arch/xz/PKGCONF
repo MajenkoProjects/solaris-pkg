@@ -1,0 +1,23 @@
+VERSION=5.8.1
+PACKAGE=xz
+URL=git://github.com/tukaani-project/${PACKAGE}@v${VERSION}
+CATEGORY=arch
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./autogen.sh
+	./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}

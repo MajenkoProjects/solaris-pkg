@@ -1,0 +1,23 @@
+VERSION=3.10
+PACKAGE=nettle
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=${SITE_GNU}/${PACKAGE}/${SRC}
+CATEGORY=crypto
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./configure --disable-openssl --enable-shared
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}

@@ -111,12 +111,23 @@ download() {
 
 extract() {
 	if [ "$URL_PROTO" != "git" ]; then
+		cd "${SRCDIR}"
 		printf "Extracting ${SRC} ... "
-		( 
-			cd "${SRCDIR}"
-			gzip -d < "${DISTFILES}/${SRC}" | tar xf -
-		)
+		case $SRC in
+			*.gz)
+				gzip -d < "${DISTFILES}/${SRC}" | tar xf -
+				;;
+
+			*.xz)
+				xz -d < "${DISTFILES}/${SRC}" | tar xf -
+				;;
+			*)
+				echo "Error: no method to extract ${SRC}"
+				return 10
+				;;
+		esac
 		echo "done"
+		cd "${HERE}"
 	fi
 }
 
