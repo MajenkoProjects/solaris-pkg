@@ -1,0 +1,24 @@
+VERSION=8.2.8
+PACKAGE=bdwgc
+SRC=${PACKAGE}-${VERSION}.tar.gz
+URL=git://github.com/bdwgc/${PACKAGE}@v${VERSION}
+CATEGORY=devel
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./autogen.sh
+	./configure
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
