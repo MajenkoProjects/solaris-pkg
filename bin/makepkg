@@ -67,6 +67,7 @@ SRCDIR="${HERE}/src"
 DESTDIR="${HERE}/staging"
 PKGDIR="${HERE}/pkg"
 DISTFILES="${HERE}/../../distfiles"
+PKGSTORE="${HERE}/../../packages/${CATEGORY}"
 
 export DESTDIR
 export DISTFILES
@@ -166,7 +167,7 @@ package() {
 
 	pkgmk -o -r "${DESTDIR}" -d "${PKGDIR}"  -f Prototype
 
-	pkgtrans "${PKGDIR}" "${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg" ${PACKAGE}
+	pkgtrans "${PKGDIR}" "${PKGSTORE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg" ${PACKAGE}
 
 #	cd "${DESTDIR}"
 #	tar -cf "${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.tar" *
@@ -195,7 +196,7 @@ runonce() {
 }
 
 installpkg() {
-	su root -c "/usr/sbin/pkgadd -d \"${HERE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg\""
+	su root -c "/usr/sbin/pkgadd -d \"${PKGSTORE}/${PACKAGE}_${VERSION}_${ARCH}_${OS}.pkg\""
 }
 
 checkdepend() {
@@ -263,6 +264,7 @@ mkdir -p "${DESTDIR}"
 runonce install 
 
 mkdir -p "${PKGDIR}"
+mkdir -p "${PKGSTORE}"
 runonce package
 
 if [ "${OPT_INSTALL}" = "1" ]; then
