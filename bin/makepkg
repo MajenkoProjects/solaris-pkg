@@ -24,10 +24,38 @@ OPT_CLEAN=0
 
 
 
-#hook_git_clone_pre() { 
-#}
-#hook_git_clone_post() { 
-#}
+push() {
+	DIR="$1"
+
+	PREVDIR_10="${PREVDIR_9}"
+	PREVDIR_9="${PREVDIR_8}"
+	PREVDIR_8="${PREVDIR_7}"
+	PREVDIR_7="${PREVDIR_6}"
+	PREVDIR_6="${PREVDIR_5}"
+	PREVDIR_5="${PREVDIR_4}"
+	PREVDIR_4="${PREVDIR_3}"
+	PREVDIR_3="${PREVDIR_2}"
+	PREVDIR_2="${PREVDIR_1}"
+	PREVDIR_1="${PREVDIR}"
+	PREVDIR="`pwd`"
+
+	cd "${DIR}"
+}
+
+pop() {
+	cd "${PREVDIR}"
+	PREVDIR="${PREVDIR_1}"
+	PREVDIR_1="${PREVDIR_2}"
+	PREVDIR_2="${PREVDIR_3}"
+	PREVDIR_3="${PREVDIR_4}"
+	PREVDIR_4="${PREVDIR_5}"
+	PREVDIR_5="${PREVDIR_6}"
+	PREVDIR_6="${PREVDIR_7}"
+	PREVDIR_7="${PREVDIR_8}"
+	PREVDIR_8="${PREVDIR_9}"
+	PREVDIR_9="${PREVDIR_10}"
+}
+
 
 hook() {
 	FN="hook_$1"
