@@ -1,0 +1,57 @@
+VERSION=7.5.0
+PACKAGE=gcc-7
+SRC=gcc-${VERSION}.tar.gz
+URL=${SITE_GNU}/gcc/gcc-${VERSION}/${SRC}
+CATEGORY=lang
+DEPENDS="arch/tar devel/binutils libs/gmp libs/mpc libs/mpfr devel/cloog devel/bdwgc"
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/gcc-${VERSION}"
+	./configure \
+	    --exec_prefix=/usr/local \
+	    --bindir=/usr/local/bin \
+	    --sbindir=/usr/local/sbin \
+	    --libexecdir=/usr/local/libexec \
+	    --datadir=/usr/local/share \
+	    --sysconfdir=/etc/usr/local \
+	    --sharedstatedir=/usr/local/share \
+	    --localstatedir=/var/usr/local \
+	    --libdir=/usr/local/lib \
+	    --infodir=/usr/local/share/info \
+	    --includedir=/usr/local/include \
+	    --mandir=/usr/local/share/man \
+	    --enable-cloog-backend=isl \
+	    --without-isl \
+	    --disable-libsanitizer \
+	    --disable-bootstrap \
+	    --enable-languages=c,c++,fortran,objc \
+	    --enable-libssp \
+	    --enable-nls \
+	    --enable-objc-gc \
+	    --enable-threads=posix \
+	    --program-suffix=-7 \
+	    --with-cloog=/usr/local \
+	    --with-gmp=/usr/local \
+	    --with-included-gettext \
+	    --with-ld=/usr/ccs/bin/ld \
+	    --without-gnu-ld \
+	    --with-libiconv-prefix=/usr/local \
+	    --with-mpfr=/usr/local \
+	    --with-ppl=/usr/local \
+	    --with-system-zlib=/usr/local \
+	    --with-as=/usr/ccs/bin/as \
+	    --without-gnu-as 
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/gcc-${VERSION}"
+	make 
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/gcc-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
