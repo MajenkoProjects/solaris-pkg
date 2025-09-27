@@ -1,0 +1,10 @@
+--- openssl-3.5.3.orig/Configurations/10-main.conf	Sat Sep 27 00:00:15 2025
++++ openssl-3.5.3/Configurations/10-main.conf	Sat Sep 27 00:01:25 2025
+@@ -319,6 +319,7 @@
+     "solaris-sparcv8-gcc" => {
+         inherit_from     => [ "solaris-sparcv7-gcc" ],
+         cflags           => add_before("-mcpu=v8"),
++	ex_libs		 => add("-lrt", "-latomic"),
+         asm_arch         => 'sparcv8',
+         perlasm_scheme   => 'void',
+     },

@@ -1,0 +1,23 @@
+VERSION=3.5.3
+PACKAGE=openssl
+SRC=${PACKAGE}-${VERSION}.tar.xz
+URL=git://github.com/${PACKAGE}/${PACKAGE}@${PACKAGE}-${VERSION}
+CATEGORY=crypto
+
+configure() {
+	echo "Configuring $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	./Configure solaris-sparcv8-gcc --prefix=/usr/local/ssl --openssldir=/usr/local/ssl 
+}
+
+build() {
+	echo "Building $PACKAGE"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make -j ${NCPU}
+}
+
+install() {
+	echo "Installing $PACKAGE to ${DESTDIR}"
+	cd "${SRCDIR}/${PACKAGE}-${VERSION}"
+	make install DESTDIR="${DESTDIR}"
+}
