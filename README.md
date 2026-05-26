@@ -1,3 +1,5 @@
+Master repository: https://git.majenko.co.uk/MajenkoProjects/solaris-pkg
+
 Solaris Package System
 ======================
 
